@@ -7,6 +7,11 @@
         <RootNamespace>Nessie.ATLYSS.EasySettings</RootNamespace>
     </PropertyGroup>
 
+    <PropertyGroup>
+        <ModURL>https://github.com/Nestorboy/ATLYSS-Mods</ModURL>
+        <ModDescription>A mod API for easily adding options to the settings menu.</ModDescription>
+    </PropertyGroup>
+
     <ItemGroup>
         <PackageReference Include="BepInEx.Analyzers"/>
         <PackageReference Include="BepInEx.AssemblyPublicizer.MSBuild"/>

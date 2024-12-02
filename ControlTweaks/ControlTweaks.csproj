@@ -7,6 +7,11 @@
         <RootNamespace>Nessie.ATLYSS.ControlTweaks</RootNamespace>
     </PropertyGroup>
 
+    <PropertyGroup>
+        <ModURL>https://github.com/Nestorboy/ATLYSS-Mods</ModURL>
+        <ModDescription>A mod with the aim of improving the Character Controller ux and quality of life.</ModDescription>
+    </PropertyGroup>
+
     <ItemGroup>
         <PackageReference Include="BepInEx.Analyzers"/>
         <PackageReference Include="BepInEx.AssemblyPublicizer.MSBuild"/>
