@@ -1,0 +1,28 @@
+<Project>
+    <PropertyGroup>
+        <ThunderstoreDirectory Condition="'$(ThunderstoreDirectory)' == ''">$(MSBuildProjectDirectory)\Thunderstore</ThunderstoreDirectory>
+    </PropertyGroup>
+    <Target Name="AddThunderstoreManifest" BeforeTargets="BeforeCompile;CoreCompile" Inputs="$(MSBuildAllProjects)" Outputs="$(ThunderstoreDirectory)\manifest.json">
+        <PropertyGroup>
+            <ThunderstoreName Condition="'$(ThunderstoreName)' == ''">$(AssemblyName)</ThunderstoreName>
+            <ThunderstoreVersion Condition="'$(ThunderstoreVersion)' == ''">$(Version)</ThunderstoreVersion>
+            <ThunderstoreModURL Condition="'$(ThunderstoreModURL)' == ''">$(ModURL)</ThunderstoreModURL>
+            <ThunderstoreDescription Condition="'$(ThunderstoreDescription)' == ''">$(ModDescription)</ThunderstoreDescription>
+            <ThunderstoreDependencies Condition="'$(ThunderstoreDependencies)' == ''">@(ModDependencies->'"%(Identity)"', ',')</ThunderstoreDependencies>
+            <GeneratedText>
+{
+    "name": "$(ThunderstoreName)",
+    "version_number": "$(ThunderstoreVersion)",
+    "website_url": "$(ThunderstoreModURL)",
+    "description": "$(ThunderstoreDescription)",
+    "dependencies": [$(ThunderstoreDependencies)]
+}
+            </GeneratedText>
+            <GeneratedFilePath>$(ThunderstoreDirectory)\manifest.json</GeneratedFilePath>
+        </PropertyGroup>
+        <ItemGroup>
+            <FileWrites Include="$(GeneratedFilePath)" />
+        </ItemGroup>
+        <WriteLinesToFile Lines="$(GeneratedText)" File="$(GeneratedFilePath)" WriteOnlyWhenDifferent="true" Overwrite="true" />
+    </Target>
+</Project>
