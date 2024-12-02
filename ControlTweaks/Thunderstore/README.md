@@ -7,7 +7,7 @@ A mod with the aim of improving the Character Controller ux and quality of life.
 - Jump and ledge jump buffering
 - Walking slowly when pressing a key
 
-## Install
+## Installing
 
 1. Install the latest version of BepInEx 5
 2. Download this mod (ControlTweaks.dll)
@@ -16,4 +16,4 @@ A mod with the aim of improving the Character Controller ux and quality of life.
 5. Put ControlTweaks.dll in the BepInEx plugins folder
 
 ### Requirements
-* [BepInEx 5](https://github.com/BepInEx/BepInEx)
+- [BepInEx 5](https://github.com/BepInEx/BepInEx)
