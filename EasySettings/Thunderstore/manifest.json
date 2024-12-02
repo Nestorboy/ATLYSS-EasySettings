@@ -1,0 +1,7 @@
+{
+    "name": "EasySettings",
+    "version_number": "1.0.0",
+    "website_url": "https://github.com/Nestorboy/ATLYSS-Mods",
+    "description": "A mod API for easily adding options to the settings menu.",
+    "dependencies": []
+}
