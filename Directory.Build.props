@@ -1,0 +1,19 @@
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <TargetFramework>netstandard2.1</TargetFramework>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <LangVersion>latest</LangVersion>
+        <RestoreAdditionalProjectSources>
+            https://api.nuget.org/v3/index.json;
+            https://nuget.bepinex.dev/v3/index.json;
+            https://nuget.samboy.dev/v3/index.json
+        </RestoreAdditionalProjectSources>
+    </PropertyGroup>
+
+    <!-- Specify here the path to ATLYSS's install folder. It also needs BepInEx 5 to be installed. -->
+    <PropertyGroup>
+        <ATLYSS_PATH>C:\Program Files (x86)\Steam\steamapps\common\ATLYSS\</ATLYSS_PATH>
+        <ATLYSS_MANAGED>$(ATLYSS_PATH)\ATLYSS_Data\Managed</ATLYSS_MANAGED>
+        <ATLYSS_PLUGINS>$(ATLYSS_PATH)\BepInEx\plugins</ATLYSS_PLUGINS>
+    </PropertyGroup>
+</Project>

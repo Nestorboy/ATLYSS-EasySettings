@@ -1,0 +1,8 @@
+<Project>
+    <Import Project="Packages.targets"/>
+
+    <!-- Too lazy to copy over the assemblies every time. -->
+    <Target Name="MoveMod" AfterTargets="PostBuildEvent">
+        <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(ATLYSS_PLUGINS)"/>
+    </Target>
+</Project>

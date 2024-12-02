@@ -1,0 +1,13 @@
+<Project>
+    <ItemGroup>
+        <PackageReference Update="BepInEx.Analyzers" Version="1.*" PrivateAssets="all"/>
+        <PackageReference Update="BepInEx.AssemblyPublicizer.MSBuild" Version="0.4.2" PrivateAssets="all"/>
+        <PackageReference Update="BepInEx.Core" Version="5.*"/>
+        <PackageReference Update="BepInEx.PluginInfoProps" Version="2.*"/>
+        <PackageReference Update="UnityEngine.Modules" Version="2021.3.16" IncludeAssets="compile"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Update="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.2" PrivateAssets="all"/>
+    </ItemGroup>
+</Project>
