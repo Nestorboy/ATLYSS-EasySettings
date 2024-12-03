@@ -7,8 +7,6 @@ namespace Nessie.ATLYSS.EasySettings;
 
 internal static class TemplateManager
 {
-    private const string CREATE_TAB_NOTE = "Sorry, but this mod currently doesn't have any way to handle overflowing the tabs container, so the functions to create more tabs will have to be inaccessible for now.";
-
     internal static AtlyssTabButton TabTemplate;
 
     internal static AtlyssSpace SpaceTemplate;
