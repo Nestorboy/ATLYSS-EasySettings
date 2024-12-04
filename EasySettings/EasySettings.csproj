@@ -8,7 +8,7 @@
     </PropertyGroup>
 
     <PropertyGroup>
-        <ModURL>https://github.com/Nestorboy/ATLYSS-Mods</ModURL>
+        <ModURL>https://github.com/Nestorboy/ATLYSS-EasySettings</ModURL>
         <ModDescription>A mod API for easily adding options to the settings menu.</ModDescription>
     </PropertyGroup>
 
