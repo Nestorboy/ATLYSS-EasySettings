@@ -3,5 +3,5 @@
     "version_number": "1.0.0",
     "website_url": "https://github.com/Nestorboy/ATLYSS-Mods",
     "description": "A mod API for easily adding options to the settings menu.",
-    "dependencies": []
+    "dependencies": ["BepInEx-BepInExPack-5.4.2100"]
 }

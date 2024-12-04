@@ -13,6 +13,10 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <ModDependencies Include="BepInEx-BepInExPack-5.4.2100"/>
+    </ItemGroup>
+
+    <ItemGroup>
         <PackageReference Include="BepInEx.Analyzers"/>
         <PackageReference Include="BepInEx.AssemblyPublicizer.MSBuild"/>
         <PackageReference Include="BepInEx.Core"/>
