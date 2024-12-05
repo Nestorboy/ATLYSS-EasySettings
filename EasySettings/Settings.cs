@@ -25,6 +25,11 @@ public static class Settings
     /// </summary>
     public static UnityEvent OnApplySettings { get; } = new();
 
+    /// <summary>
+    /// A callback for when the settings menu is closed, this includes when the user presses "Cancel" or "Apply".
+    /// </summary>
+    public static UnityEvent OnCloseSettings { get; } = new();
+
     internal static int ModTabIndex { get; set; }
 
     internal static SettingsTab AddTab(string label)

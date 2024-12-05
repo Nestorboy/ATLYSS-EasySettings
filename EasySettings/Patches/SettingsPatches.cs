@@ -60,6 +60,18 @@ public static class SettingsPatches
         }
     }
 
+    [HarmonyPatch(typeof(SettingsManager), nameof(SettingsManager.Close_SettingsMenu))]
+    private static class MenuClose
+    {
+        // ReSharper disable once UnusedMember.Local
+        // ReSharper disable InconsistentNaming
+        [HarmonyPostfix]
+        private static void CloseSettings() // ReSharper restore InconsistentNaming
+        {
+            Settings.OnCloseSettings.Invoke();
+        }
+    }
+
     [HarmonyPatch(typeof(SettingsManager), nameof(SettingsManager.Set_SettingMenuSelectionIndex))]
     private static class MenuSelection
     {
