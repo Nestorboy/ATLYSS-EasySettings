@@ -47,7 +47,8 @@ public static class SettingsPatches
             Button applyButton = Utility.FindApplyButton(__instance);
             if (applyButton)
             {
-                applyButton.onClick.AddListener(() => Settings.OnApplySettings.Invoke());
+                // TODO: Push OnApplySettings event such that it gets invoked before Close_SettingsMenu.
+                //applyButton.onClick.AddListener(() => Settings.OnApplySettings.Invoke());
             }
             else
             {
@@ -69,6 +70,19 @@ public static class SettingsPatches
         private static void CloseSettings() // ReSharper restore InconsistentNaming
         {
             Settings.OnCloseSettings.Invoke();
+        }
+    }
+
+    // Temporary fix to make OnApplySettings get invoked before Close_SettingsMenu.
+    [HarmonyPatch(typeof(SettingsManager), nameof(SettingsManager.Save_SettingsData))]
+    private static class SaveSettings
+    {
+        // ReSharper disable once UnusedMember.Local
+        // ReSharper disable InconsistentNaming
+        [HarmonyPostfix]
+        private static void ApplySettings() // ReSharper restore InconsistentNaming
+        {
+            Settings.OnApplySettings.Invoke();
         }
     }
 
