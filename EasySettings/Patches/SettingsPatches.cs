@@ -38,6 +38,12 @@ public static class SettingsPatches
             horizontalGroup.padding.right = horizontalGroup.padding.left;
             horizontalGroup.childControlWidth = true;
 
+            Button cancelButton = Utility.FindCancelButton(__instance);
+            if (cancelButton)
+            {
+                cancelButton.onClick.AddListener(() => Settings.OnCancelSettings.Invoke());
+            }
+
             Button applyButton = Utility.FindApplyButton(__instance);
             if (applyButton)
             {

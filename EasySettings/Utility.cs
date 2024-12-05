@@ -60,6 +60,23 @@ public static class Utility
         return null;
     }
 
+    public static Button FindCancelButton(SettingsManager instance)
+    {
+        foreach (Button butt in instance.GetComponentsInChildren<Button>(true))
+        {
+            foreach (PersistentCall call in butt.onClick.m_PersistentCalls.m_Calls)
+            {
+                if (call == null) continue;
+                if (call.target != instance) continue;
+                if (call.methodName != nameof(SettingsManager.Close_SettingsMenu)) continue;
+
+                return butt;
+            }
+        }
+
+        return null;
+    }
+
     public static Button FindApplyButton(SettingsManager instance)
     {
         foreach (Button butt in instance.GetComponentsInChildren<Button>(true))

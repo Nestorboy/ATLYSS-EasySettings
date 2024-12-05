@@ -16,6 +16,11 @@ public static class Settings
     public static UnityEvent OnInitialized { get; } = new();
 
     /// <summary>
+    /// A callback for whenever the user presses the "Cancel" button.
+    /// </summary>
+    public static UnityEvent OnCancelSettings { get; } = new();
+
+    /// <summary>
     /// A callback which is invoked whenever the user presses the "Apply" button. Useful for finalizing and saving settings.
     /// </summary>
     public static UnityEvent OnApplySettings { get; } = new();
