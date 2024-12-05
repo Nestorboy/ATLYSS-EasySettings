@@ -232,7 +232,6 @@ public class SettingsTab
     {
         AtlyssDropdown element = AddDropdown(label, value);
         element.Dropdown.AddOptions(options);
-        element.Root.gameObject.SetActive(true);
 
         PushElement(element);
         return element;
@@ -242,7 +241,6 @@ public class SettingsTab
     {
         AtlyssDropdown element = AddDropdown(label, value);
         element.Dropdown.AddOptions(options);
-        element.Root.gameObject.SetActive(true);
 
         PushElement(element);
         return element;
