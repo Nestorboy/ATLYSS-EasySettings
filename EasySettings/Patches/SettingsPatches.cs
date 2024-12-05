@@ -121,8 +121,6 @@ public static class SettingsPatches
                 string newKey = keyButtons[i]._keyBind;
                 if (oldKey == newKey) continue;
 
-                EasySettingsPlugin.Logger.LogInfo($"Key {i} changed from {oldKey} to {newKey}");
-
                 bool isModButton = SettingsTab.KeyButtonIndexToKeyButton.ContainsKey(i);
                 if (isModButton)
                 {
@@ -172,8 +170,6 @@ public static class SettingsPatches
                 string oldKey = keys[i];
                 string newKey = keyButtons[i]._keyBind;
                 if (oldKey == newKey) continue;
-
-                EasySettingsPlugin.Logger.LogInfo($"Key {i} changed from {oldKey} to {newKey}");
 
                 if (SettingsTab.KeyButtonIndexToKeyButton.TryGetValue(i, out AtlyssKeyButton modKeyButton))
                 {
