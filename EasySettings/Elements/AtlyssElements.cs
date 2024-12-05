@@ -14,3 +14,10 @@ public abstract class BaseAtlyssLabelElement : BaseAtlyssElement
 
     public string LabelText { get => Label.text; set => Label.text = value; }
 }
+
+public interface IValueElement
+{
+    private void Apply() {}
+
+    public void Revert() {}
+}
