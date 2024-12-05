@@ -11,7 +11,7 @@ public static class Settings
     public static SettingsTab ModTab { get; } = new();
 
     /// <summary>
-    /// Invoked whenever the EasySettings system has been initialized. The system depends on the SettingsManager so it has to wait on that for now.
+    /// Invoked whenever the EasySettings system has been initialized. The system depends on the SettingsManager which is initialized in Start, so it has to wait on that for now.
     /// </summary>
     public static UnityEvent OnInitialized { get; } = new();
 
