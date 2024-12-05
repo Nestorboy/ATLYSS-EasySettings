@@ -6,6 +6,7 @@ using BepInEx.Configuration;
 using HarmonyLib;
 using Nessie.ATLYSS.EasySettings.UIElements;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Nessie.ATLYSS.EasySettings;
 
@@ -36,6 +37,25 @@ public class SettingsTab
     {
         AtlyssHeader element = TemplateManager.CreateHeader(Content);
         element.Label.text = label;
+        element.Root.gameObject.SetActive(true);
+
+        PushElement(element);
+        return element;
+    }
+
+    public AtlyssButton AddButton(string buttonLabel, UnityAction onClick)
+    {
+        AtlyssButton element = AddButton(buttonLabel);
+        element.Button.onClick.AddListener(onClick);
+
+        return element;
+    }
+
+    public AtlyssButton AddButton(string buttonLabel)
+    {
+        AtlyssButton element = TemplateManager.CreateButton(Content);
+        element.ButtonLabel.text = buttonLabel;
+
         element.Root.gameObject.SetActive(true);
 
         PushElement(element);
