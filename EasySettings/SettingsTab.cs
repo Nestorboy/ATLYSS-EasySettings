@@ -242,8 +242,10 @@ public class SettingsTab
 
     public AtlyssDropdown AddDropdown(string label, List<string> options, int value = 0)
     {
-        AtlyssDropdown element = AddDropdown(label, value);
+        AtlyssDropdown element = AddDropdown(label);
         element.Dropdown.AddOptions(options);
+        element.Dropdown.SetValueWithoutNotify(value);
+        element.Apply();
 
         PushElement(element);
         return element;
@@ -251,22 +253,22 @@ public class SettingsTab
 
     public AtlyssDropdown AddDropdown(string label, List<Sprite> options, int value = 0)
     {
-        AtlyssDropdown element = AddDropdown(label, value);
+        AtlyssDropdown element = AddDropdown(label);
         element.Dropdown.AddOptions(options);
+        element.Dropdown.SetValueWithoutNotify(value);
+        element.Apply();
 
         PushElement(element);
         return element;
     }
 
-    public AtlyssDropdown AddDropdown(string label, int value = 0)
+    public AtlyssDropdown AddDropdown(string label)
     {
         AtlyssDropdown element = TemplateManager.CreateDropdown(Content);
         Settings.OnCloseSettings.AddListener(() => element.Revert());
         Settings.OnApplySettings.AddListener(() => element.Apply());
 
         element.Label.text = label;
-        element.Dropdown.SetValueWithoutNotify(value);
-        element.Apply();
         element.Root.gameObject.SetActive(true);
 
         PushElement(element);
