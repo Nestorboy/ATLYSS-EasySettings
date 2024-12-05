@@ -94,8 +94,6 @@ public static class SettingsPatches
                 return;
             }
 
-            EasySettingsPlugin.Logger.LogInfo("Handle_InputParameters RecordKeys");
-
             KeyBindButton[] keyButtons = __instance.keyBindButtons;
             string[] keys = new string[keyButtons.Length];
             for (int i = 0; i < keyButtons.Length; i++)
@@ -143,8 +141,6 @@ public static class SettingsPatches
                 __state = null;
                 return;
             }
-
-            EasySettingsPlugin.Logger.LogInfo("OnGUI RecordKeys");
 
             KeyBindButton[] keyButtons = __instance.keyBindButtons;
             string[] keys = new string[keyButtons.Length];
