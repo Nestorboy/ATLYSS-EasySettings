@@ -286,7 +286,7 @@ public class SettingsTab
         Settings.OnApplySettings.AddListener(() => element.Apply());
 
         element.Label.text = label;
-        element.ButtonLabel.text = value.ToString();
+        element.SetValue(value);
         element.Apply();
         element.Root.gameObject.SetActive(true);
 

@@ -29,9 +29,12 @@ public class AtlyssKeyButton : BaseAtlyssLabelElement, IValueElement
 
     public KeyCode AppliedValue { get; private set; }
 
+    private KeyCode _value;
+
     public void Initialize()
     {
         Label.text = "Key Button";
+        _value = AppliedValue;
         ButtonLabel.text = AppliedValue.ToString();
 
         Button.onClick.RemoveAndDisableAllListeners();
@@ -40,19 +43,12 @@ public class AtlyssKeyButton : BaseAtlyssLabelElement, IValueElement
 
     public void SetValue(KeyCode key)
     {
+        _value = key;
         ButtonLabel.text = key.ToString();
         ValueChanged(key);
     }
 
-    public void Apply()
-    {
-        if (!Enum.TryParse(ButtonLabel.text, true, out KeyCode key))
-        {
-            key = KeyCode.None;
-        }
-
-        AppliedValue = key;
-    }
+    public void Apply() => AppliedValue = _value;
 
     public void Revert() => SetValue(AppliedValue);
 
