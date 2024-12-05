@@ -111,11 +111,15 @@ public class SettingsTab
     public AtlyssSimpleSlider AddSlider(string label, float value = 0f, float min = DEFAULT_SLIDER_MIN, float max = DEFAULT_SLIDER_MAX, bool wholeNumbers = false)
     {
         AtlyssSimpleSlider element = TemplateManager.CreateSimpleSlider(Content);
+        Settings.OnCloseSettings.AddListener(() => element.Revert());
+        Settings.OnApplySettings.AddListener(() => element.Apply());
+
         element.Label.text = label;
         element.Slider.wholeNumbers = wholeNumbers;
         element.Slider.minValue = min;
         element.Slider.maxValue = max;
         element.Slider.SetValueWithoutNotify(value);
+        element.Apply();
         element.Root.gameObject.SetActive(true);
 
         PushElement(element);
