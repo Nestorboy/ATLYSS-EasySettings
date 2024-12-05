@@ -64,7 +64,6 @@ public class SettingsTab
 
     public AtlyssToggle AddToggle(ConfigEntry<bool> config) => AddToggle(config.Definition.Key, config);
 
-
     public AtlyssToggle AddToggle(string label, ConfigEntry<bool> config)
     {
         AtlyssToggle element = AddToggle(label, config.Value);
