@@ -9,12 +9,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Made settings revert if apply was never pressed.
+- OnCloseSettings callback.
 - OnCancelSettings callback.
-- Button element.
+- Button elements.
 
 ### Fixed
 
 - Excess logs when rebinding a key.
+- Dropdowns not initializing their value.
+- ApplySettings now gets called before the settings close.
 
 ## [1.0.0] - 2024-12-03
 
