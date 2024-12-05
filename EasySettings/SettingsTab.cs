@@ -33,6 +33,11 @@ public class SettingsTab
         return element;
     }
 
+    /// <summary>
+    /// An element that just has a label and darker background, useful for category separators.
+    /// </summary>
+    /// <param name="label"></param>
+    /// <returns></returns>
     public AtlyssHeader AddHeader(string label)
     {
         AtlyssHeader element = TemplateManager.CreateHeader(Content);
