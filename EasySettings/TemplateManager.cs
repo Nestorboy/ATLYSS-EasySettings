@@ -11,6 +11,7 @@ internal static class TemplateManager
 
     internal static AtlyssSpace SpaceTemplate;
     internal static AtlyssHeader HeaderTemplate;
+    internal static AtlyssButton ButtonTemplate;
     internal static AtlyssToggle ToggleTemplate;
     internal static AtlyssSimpleSlider SimpleSliderTemplate;
     internal static AtlyssAdvancedSlider AdvancedSliderTemplate;
@@ -59,6 +60,13 @@ internal static class TemplateManager
         {
             HeaderTemplate = CreateHeader(modTab.Content, headerRoot);
             HeaderTemplate.Root.gameObject.SetActive(false);
+        }
+
+        RectTransform buttonRoot = FindButton(manager);
+        if (buttonRoot)
+        {
+            ButtonTemplate = CreateButton(modTab.Content, buttonRoot);
+            ButtonTemplate.Root.gameObject.SetActive(false);
         }
 
         RectTransform toggleRoot = FindToggle(manager);
@@ -137,6 +145,30 @@ internal static class TemplateManager
 
                 Text text = child.GetComponentInChildren<Text>(true);
                 if (!text) continue;
+
+                return child;
+            }
+        }
+
+        return null;
+    }
+
+    private static RectTransform FindButton(SettingsManager manager)
+    {
+        Transform[] tabContents = [manager._videoTabContent, manager._audioTabContent, manager._inputTabContent, manager._networkTabContent];
+
+        foreach (RectTransform tab in tabContents)
+        {
+            foreach (RectTransform child in tab)
+            {
+                Button butt = child.GetComponentInChildren<Button>(true);
+                if (!butt) continue;
+
+                Text text = child.GetComponentInChildren<Text>(true);
+                if (!text) continue;
+
+                Selectable[] selectables = child.GetComponentsInChildren<Selectable>(true);
+                if (selectables.Length > 1) continue;
 
                 return child;
             }
@@ -270,6 +302,26 @@ internal static class TemplateManager
         header.Initialize();
 
         return header;
+    }
+
+    internal static AtlyssButton CreateButton(RectTransform container) => CreateButton(container, ButtonTemplate);
+
+    internal static AtlyssButton CreateButton(RectTransform container, AtlyssButton template) => CreateButton(container, template.Root);
+
+    internal static AtlyssButton CreateButton(RectTransform container, RectTransform template)
+    {
+        RectTransform root = Object.Instantiate(template, container);
+
+        AtlyssButton button = new AtlyssButton
+        {
+            Root = root,
+            ButtonLabel = root.GetComponentInChildren<Text>(true),
+            Button = root.GetComponentInChildren<Button>(true)
+        };
+
+        button.Initialize();
+
+        return button;
     }
 
     internal static AtlyssToggle CreateToggle(RectTransform container) => CreateToggle(container, ToggleTemplate);
