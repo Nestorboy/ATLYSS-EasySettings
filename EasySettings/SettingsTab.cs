@@ -55,7 +55,6 @@ public class SettingsTab
     {
         AtlyssButton element = TemplateManager.CreateButton(Content);
         element.ButtonLabel.text = buttonLabel;
-
         element.Root.gameObject.SetActive(true);
 
         PushElement(element);
