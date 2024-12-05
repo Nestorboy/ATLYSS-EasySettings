@@ -1,11 +1,12 @@
-﻿using Nessie.ATLYSS.EasySettings.Extensions;
+﻿using System;
+using Nessie.ATLYSS.EasySettings.Extensions;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace Nessie.ATLYSS.EasySettings.UIElements;
 
-public class AtlyssKeyButton : BaseAtlyssLabelElement
+public class AtlyssKeyButton : BaseAtlyssLabelElement, IValueElement
 {
     public Text ButtonLabel;
 
@@ -26,10 +27,12 @@ public class AtlyssKeyButton : BaseAtlyssLabelElement
 
     public UnityEvent OnClicked { get; } = new();
 
+    public KeyCode AppliedValue { get; private set; }
+
     public void Initialize()
     {
         Label.text = "Key Button";
-        ButtonLabel.text = KeyCode.None.ToString();
+        ButtonLabel.text = AppliedValue.ToString();
 
         Button.onClick.RemoveAndDisableAllListeners();
         Button.onClick.AddListener(Clicked);
@@ -40,6 +43,18 @@ public class AtlyssKeyButton : BaseAtlyssLabelElement
         ButtonLabel.text = key.ToString();
         ValueChanged(key);
     }
+
+    public void Apply()
+    {
+        if (!Enum.TryParse(ButtonLabel.text, true, out KeyCode key))
+        {
+            key = KeyCode.None;
+        }
+
+        AppliedValue = key;
+    }
+
+    public void Revert() => SetValue(AppliedValue);
 
     private void ValueChanged(KeyCode newValue) => OnValueChanged.Invoke(newValue);
 

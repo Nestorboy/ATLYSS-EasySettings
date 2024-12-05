@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace Nessie.ATLYSS.EasySettings.UIElements;
 
-public class AtlyssSimpleSlider : BaseAtlyssLabelElement
+public class AtlyssSimpleSlider : BaseAtlyssLabelElement, IValueElement
 {
     private Slider _slider;
 
@@ -21,6 +21,8 @@ public class AtlyssSimpleSlider : BaseAtlyssLabelElement
 
     public UnityEvent<float> OnValueChanged { get; } = new();
 
+    public float AppliedValue { get; private set; }
+
     public void Initialize()
     {
         LabelText = "Slider";
@@ -29,8 +31,12 @@ public class AtlyssSimpleSlider : BaseAtlyssLabelElement
         Slider.wholeNumbers = false;
         Slider.minValue = 0f;
         Slider.maxValue = 1f;
-        Slider.SetValueWithoutNotify(0f);
+        Slider.SetValueWithoutNotify(AppliedValue);
     }
+
+    public void Apply() => AppliedValue = _slider.value;
+
+    public void Revert() => _slider.value = AppliedValue;
 
     private void ValueChanged(float newValue) => OnValueChanged.Invoke(newValue);
 }

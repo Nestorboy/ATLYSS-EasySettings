@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace Nessie.ATLYSS.EasySettings.UIElements;
 
-public class AtlyssToggle : BaseAtlyssLabelElement
+public class AtlyssToggle : BaseAtlyssLabelElement, IValueElement
 {
     private Toggle _toggle;
 
@@ -21,13 +21,19 @@ public class AtlyssToggle : BaseAtlyssLabelElement
 
     public UnityEvent<bool> OnValueChanged { get; } = new();
 
+    public bool AppliedValue { get; private set; }
+
     public void Initialize()
     {
         LabelText = "Toggle";
 
         Toggle.onValueChanged.RemoveAndDisableAllListeners();
-        Toggle.SetIsOnWithoutNotify(false);
+        Toggle.SetIsOnWithoutNotify(AppliedValue);
     }
+    
+    public void Apply() => AppliedValue = _toggle.isOn;
+
+    public void Revert() => _toggle.isOn = AppliedValue;
 
     private void ValueChanged(bool newValue) => OnValueChanged.Invoke(newValue);
 }

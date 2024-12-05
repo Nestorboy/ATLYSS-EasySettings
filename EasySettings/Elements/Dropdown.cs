@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace Nessie.ATLYSS.EasySettings.UIElements;
 
-public class AtlyssDropdown : BaseAtlyssLabelElement
+public class AtlyssDropdown : BaseAtlyssLabelElement, IValueElement
 {
     private Dropdown _dropdown;
 
@@ -21,6 +21,8 @@ public class AtlyssDropdown : BaseAtlyssLabelElement
 
     public UnityEvent<int> OnValueChanged { get; } = new();
 
+    public int AppliedValue { get; private set; }
+
     public void Initialize()
     {
         Label.text = "Dropdown";
@@ -28,8 +30,12 @@ public class AtlyssDropdown : BaseAtlyssLabelElement
         Dropdown.onValueChanged.RemoveAndDisableAllListeners();
         Dropdown.onValueChanged.AddListener(ValueChanged);
         Dropdown.options.Clear();
-        Dropdown.SetValueWithoutNotify(0);
+        Dropdown.SetValueWithoutNotify(AppliedValue);
     }
+
+    public void Apply() => AppliedValue = Dropdown.value;
+
+    public void Revert() => Dropdown.value = AppliedValue;
 
     private void ValueChanged(int newValue) => OnValueChanged.Invoke(newValue);
 }
