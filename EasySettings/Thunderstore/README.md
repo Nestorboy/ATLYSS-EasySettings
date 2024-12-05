@@ -16,6 +16,7 @@ A mod API for easily adding options to the settings menu.
 - An easy-to-use API to add more settings
 - Headers
 - Spaces
+- Buttons
 - Toggles
 - Simple Sliders
 - Advanced Sliders
