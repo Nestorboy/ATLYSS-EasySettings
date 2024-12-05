@@ -79,8 +79,12 @@ public class SettingsTab
     public AtlyssToggle AddToggle(string label, bool value = false)
     {
         AtlyssToggle element = TemplateManager.CreateToggle(Content);
+        Settings.OnCloseSettings.AddListener(() => element.Revert());
+        Settings.OnApplySettings.AddListener(() => element.Apply());
+
         element.Label.text = label;
         element.Toggle.SetIsOnWithoutNotify(value);
+        element.Apply();
         element.Root.gameObject.SetActive(true);
 
         PushElement(element);
@@ -194,6 +198,9 @@ public class SettingsTab
     public AtlyssAdvancedSlider AddAdvancedSlider(string label, float value = 0f, float min = DEFAULT_SLIDER_MIN, float max = DEFAULT_SLIDER_MAX, bool wholeNumbers = false)
     {
         AtlyssAdvancedSlider element = TemplateManager.CreateAdvancedSlider(Content);
+        Settings.OnCloseSettings.AddListener(() => element.Revert());
+        Settings.OnApplySettings.AddListener(() => element.Apply());
+
         element.Label.text = label;
         element.ValueText.text = value.ToString(CultureInfo.InvariantCulture);
         element.Slider.onValueChanged.AddListener(newValue => { element.ValueText.text = newValue.ToString(CultureInfo.InvariantCulture); });
@@ -201,6 +208,7 @@ public class SettingsTab
         element.Slider.minValue = min;
         element.Slider.maxValue = max;
         element.Slider.SetValueWithoutNotify(value);
+        element.Apply();
         element.Root.gameObject.SetActive(true);
 
         PushElement(element);
@@ -249,8 +257,12 @@ public class SettingsTab
     public AtlyssDropdown AddDropdown(string label, int value = 0)
     {
         AtlyssDropdown element = TemplateManager.CreateDropdown(Content);
+        Settings.OnCloseSettings.AddListener(() => element.Revert());
+        Settings.OnApplySettings.AddListener(() => element.Apply());
+
         element.Label.text = label;
         element.Dropdown.SetValueWithoutNotify(value);
+        element.Apply();
         element.Root.gameObject.SetActive(true);
 
         PushElement(element);
@@ -270,8 +282,12 @@ public class SettingsTab
     public AtlyssKeyButton AddKeyButton(string label, KeyCode value = KeyCode.None)
     {
         AtlyssKeyButton element = TemplateManager.CreateKeyButton(Content);
+        Settings.OnCloseSettings.AddListener(() => element.Revert());
+        Settings.OnApplySettings.AddListener(() => element.Apply());
+
         element.Label.text = label;
         element.ButtonLabel.text = value.ToString();
+        element.Apply();
         element.Root.gameObject.SetActive(true);
 
         RegisterKeyButton(element);
@@ -300,6 +316,9 @@ public class SettingsTab
         int newButtonIndex = manager.keyBindButtons.Length;
         keyButton._button.onClick.AddListener(() => manager.OnClick_KeybindButton(newButtonIndex));
         KeyButtonIndexToKeyButton.Add(newButtonIndex, element);
+
+        // Reverts the key bind in ATLYSS' keyBindButtons array, otherwise the displayed value will be overriden.
+        Settings.OnCloseSettings.AddListener(() => keyButton._keyBind = element.ButtonLabel.text);
 
         manager.keyBindButtons = manager.keyBindButtons.AddToArray(keyButton);
     }
