@@ -6,6 +6,7 @@ using Nessie.ATLYSS.EasySettings.UIElements;
 namespace Nessie.ATLYSS.EasySettings;
 
 [BepInPlugin(MyPluginInfo.PLUGIN_GUID, MyPluginInfo.PLUGIN_NAME, MyPluginInfo.PLUGIN_VERSION)]
+[BepInProcess("ATLYSS.exe")]
 public class EasySettingsPlugin : BaseUnityPlugin
 {
     internal new static ManualLogSource Logger;
