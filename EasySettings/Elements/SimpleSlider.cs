@@ -28,6 +28,7 @@ public class AtlyssSimpleSlider : BaseAtlyssLabelElement, IValueElement
         LabelText = "Slider";
 
         Slider.onValueChanged.RemoveAndDisableAllListeners();
+        Slider.onValueChanged.AddListener(ValueChanged);
         Slider.wholeNumbers = false;
         Slider.minValue = 0f;
         Slider.maxValue = 1f;

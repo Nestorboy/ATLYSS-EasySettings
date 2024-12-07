@@ -28,9 +28,10 @@ public class AtlyssToggle : BaseAtlyssLabelElement, IValueElement
         LabelText = "Toggle";
 
         Toggle.onValueChanged.RemoveAndDisableAllListeners();
+        Toggle.onValueChanged.AddListener(ValueChanged);
         Toggle.SetIsOnWithoutNotify(AppliedValue);
     }
-    
+
     public void Apply() => AppliedValue = _toggle.isOn;
 
     public void Revert() => _toggle.isOn = AppliedValue;
