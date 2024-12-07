@@ -3,7 +3,7 @@
     <PropertyGroup>
         <AssemblyName>EasySettings</AssemblyName>
         <Product>Easy Settings API</Product>
-        <Version>1.1.1</Version>
+        <Version>1.1.2</Version>
         <RootNamespace>Nessie.ATLYSS.EasySettings</RootNamespace>
     </PropertyGroup>
 
