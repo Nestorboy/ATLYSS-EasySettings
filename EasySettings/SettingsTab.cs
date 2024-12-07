@@ -207,12 +207,12 @@ public class SettingsTab
 
         element.Label.text = label;
         element.ValueText.text = value.ToString(CultureInfo.InvariantCulture);
-        element.Slider.onValueChanged.AddListener(newValue => { element.ValueText.text = newValue.ToString(CultureInfo.InvariantCulture); });
         element.Slider.wholeNumbers = wholeNumbers;
         element.Slider.minValue = min;
         element.Slider.maxValue = max;
         element.Slider.SetValueWithoutNotify(value);
         element.Apply();
+        element.Slider.onValueChanged.AddListener(newValue => { element.ValueText.text = newValue.ToString(CultureInfo.InvariantCulture); });
         element.Root.gameObject.SetActive(true);
 
         PushElement(element);
