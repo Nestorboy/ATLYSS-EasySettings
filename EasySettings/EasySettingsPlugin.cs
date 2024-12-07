@@ -2,6 +2,7 @@
 using BepInEx.Logging;
 using HarmonyLib;
 using Nessie.ATLYSS.EasySettings.UIElements;
+using UnityEngine;
 
 namespace Nessie.ATLYSS.EasySettings;
 
@@ -21,6 +22,7 @@ public class EasySettingsPlugin : BaseUnityPlugin
         {
             AddModTabButton();
             AddModTabBottomSpace();
+            AddPreviewElements();
             Settings.OnInitialized.Invoke();
         });
     }
@@ -36,5 +38,20 @@ public class EasySettingsPlugin : BaseUnityPlugin
     private void AddModTabBottomSpace()
     {
         Settings.ModTab.BottomSpace = Settings.ModTab.AddSpace();
+    }
+
+    private void AddPreviewElements()
+    {
+        SettingsTab tab = Settings.ModTab;
+
+        tab.AddHeader("Easy Settings");
+
+        tab.AddToggle("Toggles!", true);
+
+        tab.AddAdvancedSlider("Sliders!", 0.4f);
+
+        tab.AddKeyButton("Key Binds!", KeyCode.LeftControl);
+
+        tab.AddDropdown("Dropdowns!", new []{ "Circle", "Triangle", "Square" });
     }
 }
