@@ -13,7 +13,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ModDependencies Include="BepInEx-BepInExPack-5.4.2100"/>
+        <ModDependencies Include="BepInEx-BepInExPack-5.4.2100" Visible="false"/>
     </ItemGroup>
 
     <ItemGroup>
