@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using BepInEx.Configuration;
 using HarmonyLib;
+using Nessie.ATLYSS.EasySettings.Extensions;
 using Nessie.ATLYSS.EasySettings.UIElements;
 using UnityEngine;
 using UnityEngine.Events;
@@ -231,9 +232,14 @@ public class SettingsTab
 
     public AtlyssDropdown AddDropdown<T>(string label, ConfigEntry<T> config) where T : Enum
     {
-        string[] enumNames = Enum.GetNames(config.Value.GetType());
-        AtlyssDropdown element = AddDropdown(label, enumNames, (int)(object)config.Value);
-        element.OnValueChanged.AddListener(newValue => { config.Value = (T)(object)newValue; });
+        Type enumType = config.Value.GetType();
+        string[] enumNames = Enum.GetNames(enumType);
+        int enumIndex = config.Value.GetIndex();
+        AtlyssDropdown element = AddDropdown(label, enumNames, enumIndex);
+        element.OnValueChanged.AddListener(newValue =>
+        {
+            config.Value = EnumExtensions.FromIndex<T>(newValue);
+        });
 
         return element;
     }
