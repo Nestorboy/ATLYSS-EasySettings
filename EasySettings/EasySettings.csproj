@@ -29,10 +29,10 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Reference Include="Assembly-CSharp" Publicize="true">
+        <Reference Include="Assembly-CSharp" Private="false" Publicize="true">
             <HintPath>$(ATLYSS_MANAGED)\Assembly-CSharp.dll</HintPath>
         </Reference>
-        <Reference Include="UnityEngine.UI">
+        <Reference Include="UnityEngine.UI" Private="false">
             <HintPath>$(ATLYSS_MANAGED)\UnityEngine.UI.dll</HintPath>
         </Reference>
     </ItemGroup>
