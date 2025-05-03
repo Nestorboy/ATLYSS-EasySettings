@@ -153,7 +153,7 @@ public class SettingsTab
 
         AtlyssAdvancedSlider element = AddAdvancedSlider(label, config.Value, min, max, true);
         element?.OnValueChanged.AddListener(newValue => { config.Value = Mathf.RoundToInt(newValue); });
-        element?.OnResetClicked.AddListener(() => { element.SetValue((float)config.DefaultValue); });
+        element?.OnResetClicked.AddListener(() => { element.SetValue(Convert.ToSingle(config.DefaultValue)); });
 
         return element;
     }
