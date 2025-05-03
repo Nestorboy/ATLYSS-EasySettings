@@ -1,6 +1,6 @@
 {
     "name": "EasySettings",
-    "version_number": "1.1.5",
+    "version_number": "1.1.6",
     "website_url": "https://github.com/Nestorboy/ATLYSS-EasySettings",
     "description": "A mod API for easily adding options to the settings menu.",
     "dependencies": ["BepInEx-BepInExPack-5.4.2100"]
