@@ -145,7 +145,7 @@ public class SettingsTab
     public AtlyssAdvancedSlider AddAdvancedSlider(string label, ConfigEntry<int> config)
     {
         float min = DEFAULT_SLIDER_MIN, max = DEFAULT_SLIDER_MAX;
-        if (config.Description.AcceptableValues is AcceptableValueRange<float> range)
+        if (config.Description.AcceptableValues is AcceptableValueRange<int> range)
         {
             min = range.MinValue;
             max = range.MaxValue;
