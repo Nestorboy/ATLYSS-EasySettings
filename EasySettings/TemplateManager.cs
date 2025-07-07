@@ -181,7 +181,7 @@ internal static class TemplateManager
     {
         Transform[] tabContents = [manager._videoTabContent, manager._audioTabContent, manager._inputTabContent, manager._networkTabContent];
 
-        Toggle toggle = manager._fullScreenToggle;
+        Toggle toggle = manager._jiggleBonesToggle;
 
         if (!Utility.TryGetElementRoot(tabContents, toggle.transform, out Transform root)) return null;
 
