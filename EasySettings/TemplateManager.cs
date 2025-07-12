@@ -184,7 +184,7 @@ internal static class TemplateManager
 
     private static RectTransform FindToggle(SettingsManager manager)
     {
-        Transform[] tabContents = GetVanillaTabs(manager);
+        RectTransform[] tabContents = GetVanillaTabs(manager);
 
         Toggle toggle = manager._jiggleBonesToggle;
 
@@ -198,7 +198,7 @@ internal static class TemplateManager
 
     private static RectTransform FindSimpleSlider(SettingsManager manager)
     {
-        Transform[] tabContents = GetVanillaTabs(manager);
+        RectTransform[] tabContents = GetVanillaTabs(manager);
 
         Slider slider = manager._masterVolumeSlider;
 
@@ -212,7 +212,7 @@ internal static class TemplateManager
 
     private static RectTransform FindAdvancedSlider(SettingsManager manager)
     {
-        Transform[] tabContents = GetVanillaTabs(manager);
+        RectTransform[] tabContents = GetVanillaTabs(manager);
 
         Slider slider = manager._cameraFieldOfViewSlider;
         Text valueText = manager._cameraFieldOfViewText;
@@ -229,7 +229,7 @@ internal static class TemplateManager
 
     private static RectTransform FindDropdown(SettingsManager manager)
     {
-        Transform[] tabContents = GetVanillaTabs(manager);
+        RectTransform[] tabContents = GetVanillaTabs(manager);
 
         Dropdown dropdown = manager._fullScreenResolutionDropdown;
 
@@ -243,7 +243,7 @@ internal static class TemplateManager
 
     private static RectTransform FindKeyButton(SettingsManager manager)
     {
-        Transform[] tabContents = GetVanillaTabs(manager);
+        RectTransform[] tabContents = GetVanillaTabs(manager);
 
         KeyBindButton[] keyButtons = manager.keyBindButtons;
         if (keyButtons is not { Length: > 0 }) return null;
