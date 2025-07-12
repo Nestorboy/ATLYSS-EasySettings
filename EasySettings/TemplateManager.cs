@@ -164,8 +164,8 @@ internal static class TemplateManager
                 Button butt = child.GetComponentInChildren<Button>(true);
                 if (!butt) continue;
 
-                Text text = child.GetComponentInChildren<Text>(true);
-                if (!text) continue;
+                Text[] texts = child.GetComponentsInChildren<Text>(true);
+                if (texts.Length > 1 || !texts[0].transform.IsChildOf(butt.transform)) continue;
 
                 Selectable[] selectables = child.GetComponentsInChildren<Selectable>(true);
                 if (selectables.Length > 1) continue;
