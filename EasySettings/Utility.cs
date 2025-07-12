@@ -43,6 +43,20 @@ public static class Utility
         return false;
     }
 
+    public static bool TryGetElementRoot(RectTransform[] contents, Transform elementChild, out Transform root)
+    {
+        foreach (RectTransform content in contents)
+        {
+            if (TryGetRelativeRoot(content, elementChild.transform, out root))
+            {
+                return true;
+            }
+        }
+
+        root = null;
+        return false;
+    }
+
     public static Transform FindTabsContainer(SettingsManager instance)
     {
         foreach (Button butt in instance.GetComponentsInChildren<Button>(true))
