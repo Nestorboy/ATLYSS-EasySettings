@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.8] - 2025-07-12
+
+### Fixed
+
+- Key button being used as the regular button.
+
 ## [1.1.7] - 2025-07-07
 
 ### Fixed
@@ -74,7 +80,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Class for settings UI callbacks and adding UI.
 - Space, Header, Toggle, Simple Slider, Advanced Slider, Dropdown, and Key Button base elements.
 
-[unreleased]: https://github.com/Nestorboy/ATLYSS-EasySettings/compare/v1.1.7...HEAD
+[unreleased]: https://github.com/Nestorboy/ATLYSS-EasySettings/compare/v1.1.8...HEAD
+[1.1.8]: https://github.com/Nestorboy/ATLYSS-EasySettings/compare/v1.1.7...v1.1.8
 [1.1.7]: https://github.com/Nestorboy/ATLYSS-EasySettings/compare/v1.1.6...v1.1.7
 [1.1.6]: https://github.com/Nestorboy/ATLYSS-EasySettings/compare/v1.1.5...v1.1.6
 [1.1.5]: https://github.com/Nestorboy/ATLYSS-EasySettings/compare/v1.1.4...v1.1.5
