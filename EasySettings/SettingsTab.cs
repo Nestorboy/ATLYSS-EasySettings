@@ -335,6 +335,34 @@ public class SettingsTab
         manager.keyBindButtons = manager.keyBindButtons.AddToArray(keyButton);
     }
 
+    public AtlyssTextField AddTextField(ConfigEntry<string> config, string placeholder = "Placeholder") => AddTextField(config.Definition.Key, config, placeholder);
+
+    public AtlyssTextField AddTextField(string label, ConfigEntry<string> config, string placeholder = "Placeholder")
+    {
+        AtlyssTextField element = AddTextField(label, config.Value, placeholder);
+        element.OnValueChanged.AddListener(newValue => { config.Value = newValue; });
+        return element;
+    }
+
+    public AtlyssTextField AddTextField(string label, string value = "", string placeholder = "Placeholder")
+    {
+        AtlyssTextField element = TemplateManager.CreateTextField(Content);
+        Settings.OnCloseSettings.AddListener(() => element.Revert());
+        Settings.OnApplySettings.AddListener(() => element.Apply());
+
+        element.Label.text = label;
+
+        if (element.Placeholder != null)
+            element.Placeholder.text = placeholder;
+
+        element.InputField.SetTextWithoutNotify(value);
+        element.Apply();
+        element.Root.gameObject.SetActive(true);
+
+        PushElement(element);
+        return element;
+    }
+
     private void PushElement(BaseAtlyssElement element)
     {
         ContentElements.Add(element);
