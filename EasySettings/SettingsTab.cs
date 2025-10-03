@@ -335,22 +335,24 @@ public class SettingsTab
         manager.keyBindButtons = manager.keyBindButtons.AddToArray(keyButton);
     }
 
-    public AtlyssTextField AddTextField(ConfigEntry<string> config, string placeholder = "Placeholder") => AddTextField(config.Definition.Key, config, placeholder);
+    const string placeholderDefaultText = "Text..";
 
-    public AtlyssTextField AddTextField(string label, ConfigEntry<string> config, string placeholder = "Placeholder")
+    public AtlyssTextField AddTextField(ConfigEntry<string> config, string placeholder = placeholderDefaultText) => AddTextField(config.Definition.Key, config, placeholder);
+
+    public AtlyssTextField AddTextField(string label, ConfigEntry<string> config, string placeholder = placeholderDefaultText)
     {
         AtlyssTextField element = AddTextField(label, config.Value, placeholder);
         element.OnValueChanged.AddListener(newValue => { config.Value = newValue; });
         return element;
     }
 
-    public AtlyssTextField AddTextField(string label, string value = "", string placeholder = "Placeholder")
+    public AtlyssTextField AddTextField(string label, string value = "", string placeholder = placeholderDefaultText)
     {
         AtlyssTextField element = TemplateManager.CreateTextField(Content);
         Settings.OnCloseSettings.AddListener(() => element.Revert());
         Settings.OnApplySettings.AddListener(() => element.Apply());
 
-        element.Label.text = label;
+        element.LabelText = label;
 
         if (element.Placeholder != null)
             element.Placeholder.text = placeholder;

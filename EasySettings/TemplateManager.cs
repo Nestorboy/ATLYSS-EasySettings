@@ -496,21 +496,23 @@ internal static class TemplateManager
         AtlyssTextField textField = new AtlyssTextField
         {
             Root = root,
-            Label = root.GetComponentsInChildren<Text>(true)[2],
-            Placeholder = root.GetComponentsInChildren<Text>(true)[0],
-            InputField = (InputField)components[0]
+            Label = root.GetComponentsInChildren<Text>(true)[2], // couldnt get it to work with components[1]
+            Placeholder = ((InputField)components[0]).placeholder as Text,
+            InputField = (InputField)components[0],
         };
 
-        textField.Root.GetComponentsInChildren<Text>(true)[3].gameObject.SetActive(false); // hashtag symbol next to text field
+        var textComponents = textField.Root.GetComponentsInChildren<Text>(true);
 
-        textField.Root.GetComponentsInChildren<Text>(true)[1].color = Color.white; // Input field text color
-        textField.Root.GetComponentsInChildren<Text>(true)[2].color = Color.white; // Label text color
+        textComponents[0].color = Color.gray;  // Placeholder text color
+        textComponents[1].color = Color.white; // Input field text color
+        textComponents[2].color = Color.white; // Label text color
 
-        var currColors = textField.InputField.colors;
+        Object.Destroy(textComponents[3].gameObject); // hashtag symbol next to text field, destroy it last
 
+        ColorBlock currColors = textField.InputField.colors;
         currColors.normalColor = new Color(0.7843f, 0.7843f, 0.7843f, 1f);
-
         textField.InputField.colors = currColors;
+        
         textField.InputField.characterLimit = 32;
 
         textField.Initialize();
