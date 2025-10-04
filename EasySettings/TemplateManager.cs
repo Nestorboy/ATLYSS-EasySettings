@@ -183,7 +183,7 @@ internal static class TemplateManager
 
     private static RectTransform FindButton(SettingsManager manager)
     {
-        Transform[] tabContents = GetVanillaTabs(manager);
+        RectTransform[] tabContents = GetVanillaTabs(manager);
 
         foreach (RectTransform tab in tabContents)
         {
