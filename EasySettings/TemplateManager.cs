@@ -298,7 +298,6 @@ internal static class TemplateManager
     internal static AtlyssTabButton CreateTabButton(RectTransform container, RectTransform template)
     {
         RectTransform root = Object.Instantiate(template, container);
-        //template.gameObject.SetActive(false);
 
         AtlyssTabButton atlyssTabButton = new AtlyssTabButton
         {
@@ -319,7 +318,6 @@ internal static class TemplateManager
     internal static AtlyssHeader CreateHeader(RectTransform container, RectTransform template)
     {
         RectTransform root = Object.Instantiate(template, container);
-        //template.gameObject.SetActive(false);
 
         AtlyssHeader header = new AtlyssHeader
         {
@@ -359,7 +357,6 @@ internal static class TemplateManager
     internal static AtlyssToggle CreateToggle(RectTransform container, RectTransform template)
     {
         RectTransform root = Object.Instantiate(template, container);
-        //template.gameObject.SetActive(false);
 
         AtlyssToggle toggle = new AtlyssToggle
         {
@@ -380,7 +377,6 @@ internal static class TemplateManager
     internal static AtlyssSimpleSlider CreateSimpleSlider(RectTransform container, RectTransform template)
     {
         RectTransform root = Object.Instantiate(template, container);
-        //template.gameObject.SetActive(false);
 
         List<Component> components = root.GetComponentInChildren<ComponentReferences>(true).components;
 
@@ -403,7 +399,6 @@ internal static class TemplateManager
     internal static AtlyssAdvancedSlider CreateAdvancedSlider(RectTransform container, RectTransform template)
     {
         RectTransform root = Object.Instantiate(template, container);
-        //template.gameObject.SetActive(false);
 
         List<Component> components = root.GetComponentInChildren<ComponentReferences>(true).components;
 
@@ -428,7 +423,6 @@ internal static class TemplateManager
     internal static AtlyssDropdown CreateDropdown(RectTransform container, RectTransform template)
     {
         RectTransform root = Object.Instantiate(template, container);
-        //root.gameObject.SetActive(false);
 
         List<Component> components = root.GetComponentInChildren<ComponentReferences>(true).components;
 
@@ -451,7 +445,6 @@ internal static class TemplateManager
     internal static AtlyssKeyButton CreateKeyButton(RectTransform container, RectTransform template)
     {
         RectTransform root = Object.Instantiate(template, container);
-        //root.gameObject.SetActive(false);
 
         List<Component> components = root.GetComponentInChildren<ComponentReferences>(true).components;
 
