@@ -33,7 +33,7 @@ public class AtlyssKeyButton : BaseAtlyssLabelElement, IValueElement
 
     public void Initialize()
     {
-        Label.text = "Key Button";
+        LabelText = "Key Button";
         _value = AppliedValue;
         ButtonLabel.text = AppliedValue.ToString();
 

@@ -25,7 +25,7 @@ public class AtlyssDropdown : BaseAtlyssLabelElement, IValueElement
 
     public void Initialize()
     {
-        Label.text = "Dropdown";
+        LabelText = "Dropdown";
 
         Dropdown.onValueChanged.RemoveAndDisableAllListeners();
         Dropdown.onValueChanged.AddListener(ValueChanged);

@@ -40,7 +40,7 @@ public class AtlyssAdvancedSlider : BaseAtlyssLabelElement, IValueElement
 
     public void Initialize()
     {
-        Label.text = "Advanced Slider";
+        LabelText = "Advanced Slider";
         ValueText.text = $"{AppliedValue}";
 
         Slider.onValueChanged.RemoveAndDisableAllListeners();
