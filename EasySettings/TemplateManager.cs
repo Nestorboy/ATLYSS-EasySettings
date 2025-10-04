@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using Nessie.ATLYSS.EasySettings.UIElements;
+﻿using Nessie.ATLYSS.EasySettings.UIElements;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,6 +17,7 @@ internal static class TemplateManager
     internal static AtlyssAdvancedSlider AdvancedSliderTemplate;
     internal static AtlyssDropdown DropdownTemplate;
     internal static AtlyssKeyButton KeyButtonTemplate;
+    internal static AtlyssTextField TextFieldTemplate;
 
     #region Initialization
 
@@ -47,6 +48,13 @@ internal static class TemplateManager
         modTab.Content = (RectTransform)modTabElement.GetComponentInChildren<VerticalLayoutGroup>().transform;
 
         InitializeTabContent(modTab.Content);
+
+        RectTransform textFieldRoot = FindTextField(manager);
+        if (textFieldRoot)
+        {
+            TextFieldTemplate = CreateTextField(modTab.Content, textFieldRoot);
+            TextFieldTemplate.Root.gameObject.SetActive(false);
+        }
 
         RectTransform spaceRoot = FindSpace(manager);
         if (spaceRoot)
@@ -116,6 +124,21 @@ internal static class TemplateManager
     private static RectTransform[] GetVanillaTabs(SettingsManager manager)
     {
         return [manager._videoTabContent, manager._audioTabContent, manager._inputTabContent, manager._networkTabContent];
+    }
+
+    private static RectTransform FindTextField(SettingsManager manager)
+    {
+        RectTransform[] tabContents = GetVanillaTabs(manager);
+
+        InputField inputField = manager._defaultChatRoomNameInput;
+
+        if (!Utility.TryGetElementRoot(tabContents, inputField.transform, out Transform root))
+            return null;
+
+        List<Component> compRefs = root.gameObject.AddComponent<ComponentReferences>().components;
+        compRefs.Add(inputField);
+
+        return (RectTransform)root;
     }
 
     private static RectTransform FindSpace(SettingsManager manager)
@@ -456,5 +479,41 @@ internal static class TemplateManager
         AtlyssSpace space = new AtlyssSpace { Root = root };
 
         return space;
+    }
+
+    internal static AtlyssTextField CreateTextField(RectTransform container) => CreateTextField(container, TextFieldTemplate);
+
+    internal static AtlyssTextField CreateTextField(RectTransform container, AtlyssTextField template) => CreateTextField(container, template.Root);
+
+    internal static AtlyssTextField CreateTextField(RectTransform container, RectTransform template)
+    {
+        RectTransform root = Object.Instantiate(template, container);
+
+        List<Component> components = root.GetComponentInChildren<ComponentReferences>(true).components;
+        Text[] textComponents = root.GetComponentsInChildren<Text>(true);
+
+        AtlyssTextField textField = new AtlyssTextField
+        {
+            Root = root,
+            Label = textComponents[2],
+            Placeholder = textComponents[0],
+            InputField = (InputField)components[0],
+        };
+
+        textField.Placeholder.color = Color.gray;
+        textField.InputField.textComponent.color = Color.white;
+        textField.Label.color = Color.white;
+
+        Object.Destroy(textComponents[3].gameObject); // hashtag symbol next to text field, destroy it last
+
+        ColorBlock currColors = textField.InputField.colors;
+        currColors.normalColor = new Color(0.7843f, 0.7843f, 0.7843f, 1f);
+        textField.InputField.colors = currColors;
+        
+        textField.InputField.characterLimit = 32;
+
+        textField.Initialize();
+
+        return textField;
     }
 }
