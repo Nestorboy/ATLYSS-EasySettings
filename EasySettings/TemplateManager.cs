@@ -509,7 +509,7 @@ internal static class TemplateManager
         ColorBlock currColors = textField.InputField.colors;
         currColors.normalColor = new Color(0.7843f, 0.7843f, 0.7843f, 1f);
         textField.InputField.colors = currColors;
-        
+
         textField.InputField.characterLimit = 32;
 
         textField.Initialize();
