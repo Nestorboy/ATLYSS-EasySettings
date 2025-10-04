@@ -323,7 +323,7 @@ public class SettingsTab
             _inputReference = "", // Only used to associate native Atlyss key buttons with InputControlManager keys.
             _keyBind = element.ButtonLabel.text,
             _button = element.Button,
-            _buttonLabel = element.ButtonLabel
+            _buttonLabel = element.ButtonLabel,
         };
 
         int newButtonIndex = manager.keyBindButtons.Length;

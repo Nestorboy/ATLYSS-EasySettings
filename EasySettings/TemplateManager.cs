@@ -302,7 +302,7 @@ internal static class TemplateManager
         {
             Root = root,
             Label = root.GetComponentInChildren<Text>(true),
-            Button = root.GetComponentInChildren<Button>(true)
+            Button = root.GetComponentInChildren<Button>(true),
         };
 
         atlyssTabButton.Initialize();
@@ -321,7 +321,7 @@ internal static class TemplateManager
         AtlyssHeader header = new AtlyssHeader
         {
             Root = root,
-            Label = root.GetComponentInChildren<Text>(true)
+            Label = root.GetComponentInChildren<Text>(true),
         };
 
         header.Initialize();
@@ -341,7 +341,7 @@ internal static class TemplateManager
         {
             Root = root,
             ButtonLabel = root.GetComponentInChildren<Text>(true),
-            Button = root.GetComponentInChildren<Button>(true)
+            Button = root.GetComponentInChildren<Button>(true),
         };
 
         button.Initialize();
