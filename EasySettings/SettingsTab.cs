@@ -15,6 +15,7 @@ public class SettingsTab
 {
     private const float DEFAULT_SLIDER_MIN = 0f;
     private const float DEFAULT_SLIDER_MAX = 1f;
+    private const string PLACEHOLDER_DEFAULT_TEXT = "Text...";
 
     public AtlyssTabButton TabButton;
     public MenuElement Element;
@@ -335,18 +336,16 @@ public class SettingsTab
         manager.keyBindButtons = manager.keyBindButtons.AddToArray(keyButton);
     }
 
-    const string placeholderDefaultText = "Text..";
+    public AtlyssTextField AddTextField(ConfigEntry<string> config, string placeholder = PLACEHOLDER_DEFAULT_TEXT) => AddTextField(config.Definition.Key, config, placeholder);
 
-    public AtlyssTextField AddTextField(ConfigEntry<string> config, string placeholder = placeholderDefaultText) => AddTextField(config.Definition.Key, config, placeholder);
-
-    public AtlyssTextField AddTextField(string label, ConfigEntry<string> config, string placeholder = placeholderDefaultText)
+    public AtlyssTextField AddTextField(string label, ConfigEntry<string> config, string placeholder = PLACEHOLDER_DEFAULT_TEXT)
     {
         AtlyssTextField element = AddTextField(label, config.Value, placeholder);
         element.OnValueChanged.AddListener(newValue => { config.Value = newValue; });
         return element;
     }
 
-    public AtlyssTextField AddTextField(string label, string value = "", string placeholder = placeholderDefaultText)
+    public AtlyssTextField AddTextField(string label, string value = "", string placeholder = PLACEHOLDER_DEFAULT_TEXT)
     {
         AtlyssTextField element = TemplateManager.CreateTextField(Content);
         Settings.OnCloseSettings.AddListener(() => element.Revert());

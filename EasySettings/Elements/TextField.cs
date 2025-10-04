@@ -31,8 +31,6 @@ namespace Nessie.ATLYSS.EasySettings.UIElements
         public void Initialize()
         {
             LabelText = "Text Field";
-            if (Placeholder != null)
-                Placeholder.text = "Text..";
 
             if (InputField != null)
             {

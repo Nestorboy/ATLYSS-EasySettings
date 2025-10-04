@@ -131,14 +131,12 @@ internal static class TemplateManager
         RectTransform[] tabContents = GetVanillaTabs(manager);
 
         InputField inputField = manager._defaultChatRoomNameInput;
-        Text labelText = inputField.GetComponentInChildren<Text>(true);
 
         if (!Utility.TryGetElementRoot(tabContents, inputField.transform, out Transform root))
             return null;
 
         List<Component> compRefs = root.gameObject.AddComponent<ComponentReferences>().components;
         compRefs.Add(inputField);
-        compRefs.Add(labelText);
 
         return (RectTransform)root;
     }
@@ -492,20 +490,19 @@ internal static class TemplateManager
         RectTransform root = Object.Instantiate(template, container);
 
         List<Component> components = root.GetComponentInChildren<ComponentReferences>(true).components;
+        Text[] textComponents = root.GetComponentsInChildren<Text>(true);
 
         AtlyssTextField textField = new AtlyssTextField
         {
             Root = root,
-            Label = root.GetComponentsInChildren<Text>(true)[2], // couldnt get it to work with components[1]
-            Placeholder = ((InputField)components[0]).placeholder as Text,
+            Label = textComponents[2],
+            Placeholder = textComponents[0],
             InputField = (InputField)components[0],
         };
 
-        var textComponents = textField.Root.GetComponentsInChildren<Text>(true);
-
-        textComponents[0].color = Color.gray;  // Placeholder text color
-        textComponents[1].color = Color.white; // Input field text color
-        textComponents[2].color = Color.white; // Label text color
+        textField.Placeholder.color = Color.gray;
+        textField.InputField.textComponent.color = Color.white;
+        textField.Label.color = Color.white;
 
         Object.Destroy(textComponents[3].gameObject); // hashtag symbol next to text field, destroy it last
 
