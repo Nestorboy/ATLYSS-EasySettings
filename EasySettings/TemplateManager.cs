@@ -247,7 +247,6 @@ internal static class TemplateManager
         compRefs.Add(valueText);
 
         return (RectTransform)root;
-
     }
 
     private static RectTransform FindDropdown(SettingsManager manager)
