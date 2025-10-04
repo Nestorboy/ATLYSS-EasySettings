@@ -483,13 +483,14 @@ internal static class TemplateManager
 
         List<Component> components = root.GetComponentInChildren<ComponentReferences>(true).components;
         Text[] textComponents = root.GetComponentsInChildren<Text>(true);
+        InputField inputField = (InputField)components[0];
 
         AtlyssTextField textField = new AtlyssTextField
         {
             Root = root,
             Label = textComponents[2],
-            Placeholder = textComponents[0],
-            InputField = (InputField)components[0],
+            Placeholder = (Text)inputField.placeholder,
+            InputField = inputField,
         };
 
         textField.Placeholder.color = Color.gray;
