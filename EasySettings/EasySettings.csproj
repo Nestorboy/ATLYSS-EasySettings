@@ -8,12 +8,13 @@
     </PropertyGroup>
 
     <PropertyGroup>
-        <ModURL>https://github.com/Nestorboy/ATLYSS-EasySettings</ModURL>
-        <ModDescription>A mod API for easily adding options to the settings menu.</ModDescription>
+        <ThunderstoreTeamName>Nessie</ThunderstoreTeamName>
+        <ThunderstoreModWebsite>https://github.com/Nestorboy/ATLYSS-EasySettings</ThunderstoreModWebsite>
+        <ThunderstoreDescription>A mod API for easily adding options to the settings menu.</ThunderstoreDescription>
     </PropertyGroup>
 
     <ItemGroup>
-        <ModDependencies Include="BepInEx-BepInExPack-5.4.2100" Visible="false"/>
+        <ThunderstoreDependency Include="BepInEx-BepInExPack-5.4.2100" Visible="false"/>
     </ItemGroup>
 
     <ItemGroup>

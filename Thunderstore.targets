@@ -1,0 +1,62 @@
+<Project>
+    <PropertyGroup>
+        <ThunderstoreDirectory Condition="'$(ThunderstoreDirectory)' == ''">$(MSBuildProjectDirectory)\Thunderstore\</ThunderstoreDirectory>
+        <ThunderstoreName Condition="'$(ThunderstoreName)' == ''">$(AssemblyName)</ThunderstoreName>
+        <ThunderstoreVersion Condition="'$(ThunderstoreVersion)' == ''">$(Version)</ThunderstoreVersion>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ThunderstoreAssemblyInclude Include="$(AssemblyName).dll" Visible="false" />
+    </ItemGroup>
+
+    <Target Name="ThunderstoreClean" AfterTargets="CoreClean">
+        <RemoveDir Directories="$(IntermediateOutputPath)Thunderstore/" />
+        <Delete Files='$(OutputPath)$(ThunderstoreTeamName)-$(ThunderstoreName)-$(Version).zip'/>
+    </Target>
+
+    <Target Name="ThunderstoreStageFiles" AfterTargets="Build">
+        <Message Text="Staging files for Thunderstore in $(IntermediateOutputPath)Thunderstore" Importance="High" />
+
+        <Copy
+                SourceFiles="@(ThunderstoreAssemblyInclude->'$(IntermediateOutputPath)%(Identity)')"
+                DestinationFiles="@(ThunderstoreAssemblyInclude->'$(IntermediateOutputPath)Thunderstore/plugins/%(Identity)')"
+                ContinueOnError="true" />
+        <Copy
+                SourceFiles="$(ThunderstoreDirectory)README.md"
+                DestinationFiles="$(IntermediateOutputPath)Thunderstore/README.md" />
+        <Copy
+                SourceFiles="$(ThunderstoreDirectory)CHANGELOG.md"
+                DestinationFiles="$(IntermediateOutputPath)Thunderstore/CHANGELOG.md" />
+        <Copy
+                SourceFiles="$(ThunderstoreDirectory)icon.png"
+                DestinationFiles="$(IntermediateOutputPath)Thunderstore/icon.png" />
+    </Target>
+
+    <Target Name="ThunderstoreManifest" AfterTargets="ThunderstoreStageFiles" Inputs="$(MSBuildAllProjects)" Outputs="$(IntermediateOutputPath)Thunderstore/manifest.json">
+        <PropertyGroup>
+            <GeneratedText>
+{
+    "name": "$(ThunderstoreName)",
+    "version_number": "$(ThunderstoreVersion)",
+    "website_url": "$(ThunderstoreModWebsite)",
+    "description": "$(ThunderstoreDescription)",
+    "dependencies": [@(ThunderstoreDependency->'"%(Identity)"', ',')]
+}
+            </GeneratedText>
+            <GeneratedFilePath>$(IntermediateOutputPath)Thunderstore/manifest.json</GeneratedFilePath>
+        </PropertyGroup>
+        <ItemGroup>
+            <FileWrites Include="$(GeneratedFilePath)" />
+        </ItemGroup>
+        <WriteLinesToFile Lines="$(GeneratedText)" File="$(GeneratedFilePath)" WriteOnlyWhenDifferent="true" Overwrite="true" />
+    </Target>
+
+    <Target Name="ThunderstoreMakePackage" AfterTargets="ThunderstoreManifest">
+        <Message Text="Creating Thunderstore package in $(ProjectDir)Thunderstore" Importance="High" />
+
+        <ZipDirectory
+                Overwrite="true"
+                SourceDirectory="$(IntermediateOutputPath)Thunderstore"
+                DestinationFile="$(OutputPath)$(ThunderstoreTeamName)-$(ThunderstoreName)-$(ThunderstoreVersion).zip" />
+    </Target>
+</Project>
