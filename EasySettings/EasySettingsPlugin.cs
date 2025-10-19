@@ -19,18 +19,29 @@ public class EasySettingsPlugin : BaseUnityPlugin
 
         SettingsPatches.OnSettingsMenuInitialized.AddListener(() =>
         {
-            AddModTabButton();
+            if (!TryAddModTabButton())
+            {
+                return;
+            }
+
             AddModTabBottomSpace();
             Settings.OnInitialized.Invoke();
         });
     }
 
-    private void AddModTabButton()
+    private bool TryAddModTabButton()
     {
-        Settings.ModTabIndex = 4;
+        if (!Utility.TryGetNextUnusedMenuIndex(out byte unusedIndex))
+        {
+            Logger.LogError("Unable to find unused menu index to use for 'Mods' tab. EasySettings won't be available.");
+            return false;
+        }
+
+        Settings.ModTabIndex = unusedIndex;
         AtlyssTabButton modTab = Settings.AddTabButton("Mods");
         modTab.OnClicked.AddListener(() => { SettingsManager._current.Set_SettingMenuSelectionIndex(Settings.ModTabIndex); });
         Settings.ModTab.TabButton = modTab;
+        return true;
     }
 
     private void AddModTabBottomSpace()
