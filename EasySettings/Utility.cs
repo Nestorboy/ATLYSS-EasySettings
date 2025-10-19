@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Linq;
+using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
@@ -119,4 +121,41 @@ public static class Utility
 
         return false;
     }
+
+    /// <summary>
+    /// Used for finding the next available menu index to use when inserting additional menu tabs.
+    /// </summary>
+    /// <param name="settingsManager">The SettingsManager to search for an unused menu index in.</param>
+    /// <param name="index">The next unused menu index as a byte, 0 if there was no unused index.</param>
+    /// <returns>true if an unused menu index was found, false if none was found.</returns>
+    public static bool TryGetNextUnusedMenuIndex(SettingsManager settingsManager, out byte index)
+    {
+        MenuElement menusContainer = settingsManager._settingsMenuElement;
+        MenuElement[] menus = menusContainer.GetComponentsInChildren<MenuElement>(true);
+        MenuElement[] childMenus = menus.Where(menu => menu != menusContainer).ToArray();
+
+        SettingsManager.SettingsMenuSelection oldMenuSelection = settingsManager._currentSettingsMenuSelection;
+        int nextIndex = 0;
+        while (nextIndex <= byte.MaxValue)
+        {
+            settingsManager.Set_SettingMenuSelectionIndex(nextIndex);
+            if (!childMenus.Any(menu => menu.isEnabled))
+            {
+                break;
+            }
+
+            nextIndex++;
+        }
+
+        settingsManager.Set_SettingMenuSelectionIndex((int)oldMenuSelection);
+        index = (byte)Math.Min(nextIndex, byte.MaxValue);
+        return nextIndex <= byte.MaxValue;
+    }
+
+    /// <summary>
+    /// Used for finding the next available menu index to use when inserting additional menu tabs.
+    /// </summary>
+    /// <param name="index">The next unused menu index as a byte, 0 if there was no unused index.</param>
+    /// <returns>true if an unused menu index was found, false if none was found.</returns>
+    public static bool TryGetNextUnusedMenuIndex(out byte index) => TryGetNextUnusedMenuIndex(SettingsManager._current, out index);
 }
