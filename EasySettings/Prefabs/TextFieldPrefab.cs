@@ -10,7 +10,7 @@ internal static class TextFieldPrefab
     private const string BACKGROUND_SPRITE_PATH = "_graphic/_ui/bk_04";
     private const string INPUT_SPRITE_PATH = "_graphic/_ui/uiBox03";
 
-    public static RectTransform Create()
+    internal static RectTransform Create()
     {
         GameObject obj = CreateRoot(out InputField inputField, out Text label);
 
