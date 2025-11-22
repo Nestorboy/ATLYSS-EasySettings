@@ -53,6 +53,9 @@ public static class SettingsPatches
             horizontalGroup.padding.right = horizontalGroup.padding.left;
             horizontalGroup.childControlWidth = true;
 
+            RectTransform highlightTransform = __instance._selectHighlight;
+            highlightTransform.sizeDelta = new Vector2(110.4f, highlightTransform.sizeDelta.y);
+
             Button cancelButton = Utility.FindCancelButton(__instance);
             if (cancelButton)
             {
