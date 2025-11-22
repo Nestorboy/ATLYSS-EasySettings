@@ -67,7 +67,7 @@ internal static class TemplateManager
             HeaderTemplate = CreateHeader(modTab.Content, headerRoot);
             HeaderTemplate.Root.gameObject.SetActive(false);
         }
-        
+
         RectTransform buttonRoot = FindButton(manager);
         if (buttonRoot)
         {
