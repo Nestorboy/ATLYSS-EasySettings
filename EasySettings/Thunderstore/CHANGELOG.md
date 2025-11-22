@@ -9,8 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- Issues caused by game version 112025.a1
-- Text settings truncating initial values longer than 32 characters
+- Issues caused by game version 112025.a1.
+- Text settings truncating initial values longer than 32 characters.
 
 ## [1.2.0] - 2025-10-04
 
