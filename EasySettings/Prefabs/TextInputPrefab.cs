@@ -23,7 +23,7 @@ internal static class TextInputPrefab
 
     private static GameObject CreateRoot(out InputField inputField, out Text label)
     {
-        GameObject obj = new("_easySettings_textField");
+        GameObject obj = new("EasySettings TextField");
 
         RectTransform rectTransform = obj.AddComponent<RectTransform>();
         rectTransform.pivot = new Vector2(0.5f, 0.5f);
@@ -55,7 +55,7 @@ internal static class TextInputPrefab
 
     private static GameObject CreateInputField(GameObject root, out InputField inputField)
     {
-        GameObject obj = new("_easySettings_inputField");
+        GameObject obj = new("InputField");
         obj.transform.SetParent(root.transform);
 
         GameObject inputFieldText = CreateText(obj);
@@ -124,7 +124,7 @@ internal static class TextInputPrefab
 
     private static GameObject CreateLabel(GameObject root, out Text label)
     {
-        GameObject obj = new("_easySettings_inputFieldLabel");
+        GameObject obj = new("Label");
         obj.transform.SetParent(root.transform);
 
         RectTransform rectTransform = obj.AddComponent<RectTransform>();
@@ -157,7 +157,7 @@ internal static class TextInputPrefab
 
     private static GameObject CreateText(GameObject root)
     {
-        GameObject obj = new("_easySettings_inputFieldText");
+        GameObject obj = new("Text");
         obj.transform.SetParent(root.transform);
 
         RectTransform rectTransform = obj.AddComponent<RectTransform>();
@@ -190,7 +190,7 @@ internal static class TextInputPrefab
 
     private static GameObject CreatePlaceholder(GameObject root)
     {
-        GameObject obj = new("_easySettings_inputFieldPlaceholder");
+        GameObject obj = new("Placeholder");
         obj.transform.SetParent(root.transform);
 
         RectTransform rectTransform = obj.AddComponent<RectTransform>();
