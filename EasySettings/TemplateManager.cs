@@ -283,6 +283,8 @@ internal static class TemplateManager
 
     #endregion Initialization
 
+    #region Create
+
     internal static AtlyssTabButton CreateTabButton(RectTransform container) => CreateTabButton(container, TabTemplate);
 
     internal static AtlyssTabButton CreateTabButton(RectTransform container, AtlyssTabButton template) => CreateTabButton(container, template.Root);
@@ -500,4 +502,6 @@ internal static class TemplateManager
 
         return textField;
     }
+    
+    #endregion
 }
