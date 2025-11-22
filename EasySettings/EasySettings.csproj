@@ -1,9 +1,9 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
         <AssemblyName>EasySettings</AssemblyName>
         <Product>Easy Settings API</Product>
-        <Version>1.2.0</Version>
+        <Version>1.2.1</Version>
         <RootNamespace>Nessie.ATLYSS.EasySettings</RootNamespace>
     </PropertyGroup>
 
@@ -14,19 +14,19 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ThunderstoreDependency Include="BepInEx-BepInExPack-5.4.2100" Visible="false"/>
+        <ThunderstoreDependency Include="BepInEx-BepInExPack-5.4.2100" Visible="false" />
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="BepInEx.Analyzers"/>
-        <PackageReference Include="BepInEx.AssemblyPublicizer.MSBuild"/>
-        <PackageReference Include="BepInEx.Core"/>
-        <PackageReference Include="BepInEx.PluginInfoProps"/>
-        <PackageReference Include="UnityEngine.Modules"/>
+        <PackageReference Include="BepInEx.Analyzers" />
+        <PackageReference Include="BepInEx.AssemblyPublicizer.MSBuild" />
+        <PackageReference Include="BepInEx.Core" />
+        <PackageReference Include="BepInEx.PluginInfoProps" />
+        <PackageReference Include="UnityEngine.Modules" />
     </ItemGroup>
 
     <ItemGroup Condition="'$(TargetFramework.TrimEnd(`0123456789`))' == 'net'">
-        <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies"/>
+        <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" />
     </ItemGroup>
 
     <ItemGroup>
