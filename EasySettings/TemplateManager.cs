@@ -50,7 +50,7 @@ internal static class TemplateManager
 
         InitializeTabContent(modTab.Content);
 
-        RectTransform textFieldRoot = TextInputPrefab.Create();
+        RectTransform textFieldRoot = TextFieldPrefab.Create();
         TextFieldTemplate = CreateTextField(modTab.Content, textFieldRoot);
         TextFieldTemplate.Root.gameObject.SetActive(false);
 

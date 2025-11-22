@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace Nessie.ATLYSS.EasySettings.Prefabs;
 
-internal static class TextInputPrefab
+internal static class TextFieldPrefab
 {
     private const string FONT_PATH = "_graphic/_font/terminal-grotesque";
     private const string BACKGROUND_SPRITE_PATH = "_graphic/_ui/bk_04";
