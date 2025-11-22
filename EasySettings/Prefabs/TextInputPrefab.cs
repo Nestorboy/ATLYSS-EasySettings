@@ -18,7 +18,7 @@ internal static class TextInputPrefab
         compRefs.Add(inputField);
         compRefs.Add(label);
 
-        return obj.GetComponent<RectTransform>();
+        return obj.transform as RectTransform;
     }
 
     private static GameObject CreateRoot(out InputField inputField, out Text label)
