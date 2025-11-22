@@ -1,9 +1,9 @@
 <Project>
-    <Import Project="Packages.targets"/>
-    <Import Project="Thunderstore.targets"/>
+    <Import Project="Packages.targets" />
+    <Import Project="Thunderstore.targets" />
 
     <!-- Too lazy to copy over the assemblies every time. -->
     <Target Name="MoveMod" AfterTargets="PostBuildEvent">
-        <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(ATLYSS_PLUGINS)"/>
+        <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(ATLYSS_PLUGINS)" />
     </Target>
 </Project>

@@ -11,7 +11,7 @@
 
     <Target Name="ThunderstoreClean" AfterTargets="CoreClean">
         <RemoveDir Directories="$(IntermediateOutputPath)Thunderstore/" />
-        <Delete Files='$(OutputPath)$(ThunderstoreTeamName)-$(ThunderstoreName)-$(Version).zip'/>
+        <Delete Files='$(OutputPath)$(ThunderstoreTeamName)-$(ThunderstoreName)-$(Version).zip' />
     </Target>
 
     <Target Name="ThunderstoreStageFiles" AfterTargets="Build">
