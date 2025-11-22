@@ -13,6 +13,21 @@ public static class SettingsPatches
 
     private static SettingsTab ModTab => Settings.ModTab;
 
+    [HarmonyPatch(typeof(SettingsManager), nameof(SettingsManager.Update))]
+    private static class MenuUpdate
+    {
+        // ReSharper disable once UnusedMember.Local
+        // ReSharper disable InconsistentNaming
+        [HarmonyPostfix]
+        private static void SelectHighlightModTab(SettingsManager __instance)
+        {
+            if ((int)__instance._currentSettingsMenuSelection == Settings.ModTabIndex)
+            {
+                __instance._selectHighlight.transform.position = ModTab.TabButton.Root.position;
+            }
+        }
+    }
+
     [HarmonyPatch(typeof(SettingsManager), nameof(SettingsManager.Start))]
     private static class MenuInitialization
     {
