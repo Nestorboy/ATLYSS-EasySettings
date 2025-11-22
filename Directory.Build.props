@@ -12,7 +12,7 @@
 
     <!-- Specify here the path to ATLYSS's install folder. It also needs BepInEx 5 to be installed. -->
     <PropertyGroup>
-        <ATLYSS_PATH>C:\Program Files (x86)\Steam\steamapps\common\ATLYSS\</ATLYSS_PATH>
+        <ATLYSS_PATH>D:\SteamLibrary\steamapps\common\ATLYSS\</ATLYSS_PATH>
         <ATLYSS_MANAGED>$(ATLYSS_PATH)\ATLYSS_Data\Managed</ATLYSS_MANAGED>
         <ATLYSS_PLUGINS>$(ATLYSS_PATH)\BepInEx\plugins</ATLYSS_PLUGINS>
     </PropertyGroup>

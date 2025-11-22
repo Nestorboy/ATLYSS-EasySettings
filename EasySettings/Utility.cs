@@ -134,7 +134,7 @@ public static class Utility
         MenuElement[] menus = menusContainer.GetComponentsInChildren<MenuElement>(true);
         MenuElement[] childMenus = menus.Where(menu => menu != menusContainer).ToArray();
 
-        SettingsManager.SettingsMenuSelection oldMenuSelection = settingsManager._currentSettingsMenuSelection;
+        SettingsMenuSelection oldMenuSelection = settingsManager._currentSettingsMenuSelection;
         int nextIndex = 0;
         while (nextIndex <= byte.MaxValue)
         {
