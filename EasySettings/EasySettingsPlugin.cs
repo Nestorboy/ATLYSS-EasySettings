@@ -24,7 +24,6 @@ public class EasySettingsPlugin : BaseUnityPlugin
                 return;
             }
 
-            AddModTabBottomSpace();
             Settings.OnInitialized.Invoke();
         });
     }
@@ -42,10 +41,5 @@ public class EasySettingsPlugin : BaseUnityPlugin
         modTab.OnClicked.AddListener(() => { SettingsManager._current.Set_SettingMenuSelectionIndex(Settings.ModTabIndex); });
         Settings.ModTab.TabButton = modTab;
         return true;
-    }
-
-    private void AddModTabBottomSpace()
-    {
-        Settings.ModTab.BottomSpace = Settings.ModTab.AddSpace();
     }
 }

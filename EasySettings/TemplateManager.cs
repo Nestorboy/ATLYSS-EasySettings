@@ -10,15 +10,16 @@ internal static class TemplateManager
 {
     internal static AtlyssTabButton TabTemplate;
 
-    internal static AtlyssSpace SpaceTemplate;
-    internal static AtlyssHeader HeaderTemplate;
-    internal static AtlyssButton ButtonTemplate;
-    internal static AtlyssToggle ToggleTemplate;
-    internal static AtlyssSimpleSlider SimpleSliderTemplate;
-    internal static AtlyssAdvancedSlider AdvancedSliderTemplate;
-    internal static AtlyssDropdown DropdownTemplate;
-    internal static AtlyssKeyButton KeyButtonTemplate;
-    internal static AtlyssTextField TextFieldTemplate;
+    internal static RectTransform SpaceTemplate;
+    internal static RectTransform HeaderTemplate;
+    internal static RectTransform ButtonTemplate;
+    internal static RectTransform ToggleTemplate;
+    internal static RectTransform SimpleSliderTemplate;
+    internal static RectTransform AdvancedSliderTemplate;
+    internal static RectTransform DropdownTemplate;
+    internal static RectTransform KeyButtonTemplate;
+    internal static RectTransform TextFieldTemplate;
+    internal static RectTransform TabSelectorTemplate;
 
     #region Initialization
 
@@ -42,81 +43,64 @@ internal static class TemplateManager
         TabTemplate = CreateTabButton((RectTransform)tabsContainer, firstTab);
         TabTemplate.Root.gameObject.SetActive(false);
 
-        // TODO: Initialize template MenuElement and Content instead.
-        SettingsTab modTab = Settings.ModTab;
-        Transform modTabElement = Object.Instantiate(manager._videoTabElement.transform, manager._videoTabElement.transform.parent);
-        modTab.Element = modTabElement.GetComponent<MenuElement>();
-        modTab.Content = (RectTransform)modTabElement.GetComponentInChildren<VerticalLayoutGroup>().transform;
+        TextFieldTemplate = TextFieldPrefab.Create();
+        Object.DontDestroyOnLoad(TextFieldTemplate);
+        TextFieldTemplate.gameObject.SetActive(false);
+        
+        TabSelectorTemplate = TabSelectorPrefab.Create();
+        Object.DontDestroyOnLoad(TabSelectorTemplate);
+        TabSelectorTemplate.gameObject.SetActive(false);
 
-        InitializeTabContent(modTab.Content);
-
-        RectTransform textFieldRoot = TextFieldPrefab.Create();
-        TextFieldTemplate = CreateTextField(modTab.Content, textFieldRoot);
-        TextFieldTemplate.Root.gameObject.SetActive(false);
-
-        RectTransform spaceRoot = FindSpace(manager);
-        if (spaceRoot)
-        {
-            SpaceTemplate = CreateSpace(modTab.Content, spaceRoot);
-            SpaceTemplate.Root.gameObject.SetActive(false);
-        }
-
-        RectTransform headerRoot = FindHeader(manager);
-        if (headerRoot)
-        {
-            HeaderTemplate = CreateHeader(modTab.Content, headerRoot);
-            HeaderTemplate.Root.gameObject.SetActive(false);
-        }
-
-        RectTransform buttonRoot = FindButton(manager);
-        if (buttonRoot)
-        {
-            ButtonTemplate = CreateButton(modTab.Content, buttonRoot);
-            ButtonTemplate.Root.gameObject.SetActive(false);
-        }
-
-        RectTransform toggleRoot = FindToggle(manager);
-        if (toggleRoot)
-        {
-            ToggleTemplate = CreateToggle(modTab.Content, toggleRoot);
-            ToggleTemplate.Root.gameObject.SetActive(false);
-        }
-
-        RectTransform simpleSliderRoot = FindSimpleSlider(manager);
-        if (simpleSliderRoot)
-        {
-            SimpleSliderTemplate = CreateSimpleSlider(modTab.Content, simpleSliderRoot);
-            SimpleSliderTemplate.Root.gameObject.SetActive(false);
-        }
-
-        RectTransform advancedSliderRoot = FindAdvancedSlider(manager);
-        if (advancedSliderRoot)
-        {
-            AdvancedSliderTemplate = CreateAdvancedSlider(modTab.Content, advancedSliderRoot);
-            AdvancedSliderTemplate.Root.gameObject.SetActive(false);
-        }
-
-        RectTransform dropdownRoot = FindDropdown(manager);
-        if (dropdownRoot)
-        {
-            DropdownTemplate = CreateDropdown(modTab.Content, dropdownRoot);
-            DropdownTemplate.Root.gameObject.SetActive(false);
-        }
-
-        RectTransform keyButtonRoot = FindKeyButton(manager);
-        if (keyButtonRoot)
-        {
-            KeyButtonTemplate = CreateKeyButton(modTab.Content, keyButtonRoot);
-            KeyButtonTemplate.Root.gameObject.SetActive(false);
-        }
+        SpaceTemplate = CreateHiddenClone(FindSpace(manager));
+        HeaderTemplate = CreateHiddenClone(FindHeader(manager));
+        ButtonTemplate = CreateHiddenClone(FindButton(manager));
+        ToggleTemplate = CreateHiddenClone(FindToggle(manager));
+        SimpleSliderTemplate = CreateHiddenClone(FindSimpleSlider(manager));
+        AdvancedSliderTemplate = CreateHiddenClone(FindAdvancedSlider(manager));
+        DropdownTemplate = CreateHiddenClone(FindDropdown(manager));
+        KeyButtonTemplate = CreateHiddenClone(FindKeyButton(manager));
     }
 
-    private static void InitializeTabContent(RectTransform tabContent)
+    internal static void InitializeTabContent(SettingsTab settingsTab)
     {
-        foreach (RectTransform child in tabContent)
+        SettingsManager manager = Object.FindObjectOfType<SettingsManager>(true);
+
+        Transform modTabElement = Object.Instantiate(manager._videoTabElement.transform, manager._videoTabElement.transform.parent);
+        settingsTab.Element = modTabElement.GetComponent<MenuElement>();
+        settingsTab.Content = (RectTransform)modTabElement.GetComponentInChildren<VerticalLayoutGroup>().transform;
+        settingsTab.BottomSpace = settingsTab.AddSpace();
+
+        foreach (RectTransform child in settingsTab.Content)
         {
             Object.Destroy(child.gameObject);
         }
+
+        RectTransform tabSelector = Object.Instantiate(TabSelectorTemplate, settingsTab.Content);
+        tabSelector.gameObject.SetActive(true);
+        var components = tabSelector.GetComponent<ComponentReferences>();
+        var leftButton = (Button)components.components[0];
+        var rightButton = (Button)components.components[1];
+        var label = (Text)components.components[2];
+
+        settingsTab.TabControlLabel = label;
+        
+        leftButton.onClick.AddListener(() =>
+        {
+            Settings.SettingsTabIndex--;
+            if (Settings.SettingsTabIndex < 0)
+                Settings.SettingsTabIndex = Settings.SettingsTabs.Count - 1;
+            Settings.UpdateTabVisibility();
+            SettingsManager._current._gamepadSelectAsrc.Play();
+        });
+        rightButton.onClick.AddListener(() =>
+        {
+            Settings.SettingsTabIndex++;
+            if (Settings.SettingsTabIndex >= Settings.SettingsTabs.Count)
+                Settings.SettingsTabIndex = 0;
+            Settings.UpdateTabVisibility();
+            SettingsManager._current._gamepadSelectAsrc.Play();
+        });
+        label.text = settingsTab.TabName;
     }
 
     private static RectTransform[] GetVanillaTabs(SettingsManager manager)
@@ -276,6 +260,17 @@ internal static class TemplateManager
         }
 
         return null;
+    }
+
+    internal static RectTransform CreateHiddenClone(RectTransform transform)
+    {
+        if (transform == null)
+            return null;
+        
+        RectTransform root = Object.Instantiate(transform, null);
+        root.gameObject.SetActive(false);
+        Object.DontDestroyOnLoad(root);
+        return root;
     }
 
     #endregion Initialization

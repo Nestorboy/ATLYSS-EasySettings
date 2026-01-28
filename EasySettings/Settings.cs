@@ -1,4 +1,6 @@
-﻿using Nessie.ATLYSS.EasySettings.UIElements;
+﻿using System;
+using System.Collections.Generic;
+using Nessie.ATLYSS.EasySettings.UIElements;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -6,8 +8,9 @@ namespace Nessie.ATLYSS.EasySettings;
 
 public static class Settings
 {
-    private const string CREATE_TAB_NOTE = "Sorry, but this mod currently doesn't have any way to handle overflowing the tabs container, so the functions to create more tabs will have to be inaccessible for now.";
-
+    /// <summary>
+    /// Default tab that can be used for settings.
+    /// </summary>
     public static SettingsTab ModTab { get; } = new();
 
     /// <summary>
@@ -31,13 +34,37 @@ public static class Settings
     public static UnityEvent OnCloseSettings { get; } = new();
 
     internal static int ModTabIndex { get; set; }
+    internal static int SettingsTabIndex { get; set; } = 0;
+    internal static List<SettingsTab> SettingsTabs { get; } = [ModTab];
 
-    internal static SettingsTab AddTab(string label)
+    /// <summary>
+    /// Creates a new settings tab with the given name.
+    /// </summary>
+    /// <param name="label">The name of the settings tab</param>
+    /// <returns>A new tab you can use for organizing settings</returns>
+    public static SettingsTab AddCustomTab(string label)
     {
         SettingsTab tab = new SettingsTab
         {
-            
+            TabName = label
         };
+        
+        SettingsTabs.Add(tab);
+        SettingsTabs.Sort((first, second) =>
+        {
+            if (first == ModTab)
+                return -1;
+            
+            if (second == ModTab)
+                return 1;
+
+            return string.Compare(first.TabName, second.TabName, StringComparison.Ordinal);
+        });
+        SettingsTabIndex = 0;
+        TemplateManager.InitializeTabContent(tab);
+
+        for (int i = 0; i < SettingsTabs.Count; i++)
+            SettingsTabs[i].TabControlLabel.text = $"{SettingsTabs[i].TabName} ({i + 1} / {SettingsTabs.Count})";
 
         return tab;
     }
@@ -52,5 +79,21 @@ public static class Settings
         tab.Root.gameObject.SetActive(true);
 
         return tab;
+    }
+
+    internal static void UpdateTabVisibility()
+    {
+        bool currentlyOnModTab = (int)SettingsManager._current._currentSettingsMenuSelection == Settings.ModTabIndex;
+        
+        for (int i = 0; i < SettingsTabs.Count; i++)
+        {
+            var tab = SettingsTabs[i];
+            
+            if (tab.Element)
+                tab.Element.isEnabled = currentlyOnModTab && i == Settings.SettingsTabIndex;
+            
+            if (tab.Content)
+                tab.Content.anchoredPosition = Vector2.zero;
+        }
     }
 }

@@ -8,6 +8,7 @@ using Nessie.ATLYSS.EasySettings.Extensions;
 using Nessie.ATLYSS.EasySettings.UIElements;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 namespace Nessie.ATLYSS.EasySettings;
 
@@ -21,8 +22,10 @@ public class SettingsTab
     public MenuElement Element;
     public RectTransform Content;
     public List<BaseAtlyssElement> ContentElements = new();
+    public string TabName = "General";
 
     internal AtlyssSpace BottomSpace;
+    internal Text TabControlLabel;
 
     internal static Dictionary<int, AtlyssKeyButton> KeyButtonIndexToKeyButton = new();
 
