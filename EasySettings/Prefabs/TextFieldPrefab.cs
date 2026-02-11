@@ -23,10 +23,10 @@ internal static class TextFieldPrefab
 
         RectTransform rectTransform = obj.AddComponent<RectTransform>();
         rectTransform.pivot = new Vector2(0.5f, 0.5f);
-        rectTransform.anchorMin = new Vector2(0, 1);
-        rectTransform.anchorMax = new Vector2(0, 1);
-        rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 545);
-        rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 30);
+        rectTransform.anchorMin = new Vector2(0f, 1f);
+        rectTransform.anchorMax = new Vector2(0f, 1f);
+        rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 545f);
+        rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 30f);
 
         CanvasRenderer canvasRenderer = obj.AddComponent<CanvasRenderer>();
         canvasRenderer.cullTransparentMesh = true;
@@ -39,9 +39,9 @@ internal static class TextFieldPrefab
         image.type = Image.Type.Sliced;
         image.fillCenter = true;
         image.fillMethod = Image.FillMethod.Radial360;
-        image.fillAmount = 1;
+        image.fillAmount = 1f;
         image.fillClockwise = true;
-        image.pixelsPerUnitMultiplier = 1;
+        image.pixelsPerUnitMultiplier = 1f;
 
         inputField = CreateInputField(obj);
         label = CreateLabel(obj);
@@ -61,8 +61,8 @@ internal static class TextFieldPrefab
         rectTransform.pivot = new Vector2(0.5f, 0.5f);
         rectTransform.anchorMin = new Vector2(0.5f, 0.5f);
         rectTransform.anchorMax = new Vector2(0.5f, 0.5f);
-        rectTransform.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Right, 0, 180);
-        rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 30);
+        rectTransform.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Right, 0f, 180f);
+        rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 30f);
 
         CanvasRenderer canvasRenderer = obj.AddComponent<CanvasRenderer>();
         canvasRenderer.cullTransparentMesh = true;
@@ -75,9 +75,9 @@ internal static class TextFieldPrefab
         image.type = Image.Type.Sliced;
         image.fillCenter = true;
         image.fillMethod = Image.FillMethod.Radial360;
-        image.fillAmount = 1;
+        image.fillAmount = 1f;
         image.fillClockwise = true;
-        image.pixelsPerUnitMultiplier = 1;
+        image.pixelsPerUnitMultiplier = 1f;
 
         InputField inputField = obj.AddComponent<InputField>();
         inputField.transition = Selectable.Transition.ColorTint;
@@ -110,7 +110,7 @@ internal static class TextFieldPrefab
         inputField.caretColor = new Color(0.6039f, 0.8431f, 0.9607f);
         inputField.customCaretColor = true;
         inputField.selectionColor = new Color(0.6588f, 0.8078f, 1f);
-        inputField.caretBlinkRate = 4;
+        inputField.caretBlinkRate = 4f;
         inputField.caretWidth = 5;
         inputField.readOnly = false;
         inputField.shouldActivateOnSelect = true;
@@ -124,11 +124,11 @@ internal static class TextFieldPrefab
         obj.transform.SetParent(root.transform);
 
         RectTransform rectTransform = obj.AddComponent<RectTransform>();
-        rectTransform.pivot = new Vector2(0, 0.5f);
-        rectTransform.anchorMin = new Vector2(0, 0.5f);
-        rectTransform.anchorMax = new Vector2(0, 0.5f);
-        rectTransform.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Left, 6, 260);
-        rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 30);
+        rectTransform.pivot = new Vector2(0f, 0.5f);
+        rectTransform.anchorMin = new Vector2(0f, 0.5f);
+        rectTransform.anchorMax = new Vector2(0f, 0.5f);
+        rectTransform.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Left, 6f, 260f);
+        rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 30f);
 
         CanvasRenderer canvasRenderer = obj.AddComponent<CanvasRenderer>();
         canvasRenderer.cullTransparentMesh = true;
@@ -157,11 +157,11 @@ internal static class TextFieldPrefab
         obj.transform.SetParent(root.transform);
 
         RectTransform rectTransform = obj.AddComponent<RectTransform>();
-        rectTransform.pivot = new Vector2(0, 0.5f);
-        rectTransform.anchorMin = new Vector2(0, 0.5f);
-        rectTransform.anchorMax = new Vector2(0, 0.5f);
-        rectTransform.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Left, 6, 260);
-        rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 30);
+        rectTransform.pivot = new Vector2(0f, 0.5f);
+        rectTransform.anchorMin = new Vector2(0f, 0.5f);
+        rectTransform.anchorMax = new Vector2(0f, 0.5f);
+        rectTransform.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Left, 6f, 260f);
+        rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 30f);
 
         CanvasRenderer canvasRenderer = obj.AddComponent<CanvasRenderer>();
         canvasRenderer.cullTransparentMesh = true;
@@ -178,7 +178,7 @@ internal static class TextFieldPrefab
         text.supportRichText = false;
         text.horizontalOverflow = HorizontalWrapMode.Overflow;
         text.verticalOverflow = VerticalWrapMode.Overflow;
-        text.lineSpacing = 1;
+        text.lineSpacing = 1f;
         text.text = "Text";
 
         return obj;
@@ -193,8 +193,8 @@ internal static class TextFieldPrefab
         rectTransform.pivot = new Vector2(0.5f, 0.5f);
         rectTransform.anchorMin = new Vector2(0.5f, 0.5f);
         rectTransform.anchorMax = new Vector2(0.5f, 0.5f);
-        rectTransform.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Left, 6, 180);
-        rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 30);
+        rectTransform.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Left, 6f, 180f);
+        rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 30f);
 
         CanvasRenderer canvasRenderer = obj.AddComponent<CanvasRenderer>();
         canvasRenderer.cullTransparentMesh = true;
@@ -211,7 +211,7 @@ internal static class TextFieldPrefab
         text.supportRichText = true;
         text.horizontalOverflow = HorizontalWrapMode.Overflow;
         text.verticalOverflow = VerticalWrapMode.Overflow;
-        text.lineSpacing = 1;
+        text.lineSpacing = 1f;
         text.text = "Placeholder";
 
         return obj;
