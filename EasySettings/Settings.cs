@@ -38,12 +38,18 @@ public static class Settings
     internal static List<SettingsTab> SettingsTabs { get; } = [ModTab];
 
     /// <summary>
-    /// Creates a new settings tab with the given name.
+    /// Finds or creates a new settings tab with the given name.
     /// </summary>
-    /// <param name="label">The name of the settings tab</param>
-    /// <returns>A new tab you can use for organizing settings</returns>
-    public static SettingsTab AddCustomTab(string label)
+    /// <param name="label">The name of the settings tab.</param>
+    /// <returns>An existing or new tab you can add settings to.</returns>
+    public static SettingsTab GetOrAddCustomTab(string label)
     {
+        SettingsTab existingTab = SettingsTabs.Find(tab => tab.TabName == label);
+        if (existingTab != null)
+        {
+            return existingTab;
+        }
+
         SettingsTab tab = new()
         {
             TabName = label,
