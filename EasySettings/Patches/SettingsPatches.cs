@@ -111,7 +111,7 @@ public static class SettingsPatches
         // ReSharper disable once UnusedMember.Local
         // ReSharper disable InconsistentNaming
         [HarmonyPostfix]
-        private static void ApplySelection(SettingsManager __instance) // ReSharper restore InconsistentNaming
+        private static void ApplySelection() // ReSharper restore InconsistentNaming
         {
             Settings.UpdateTabVisibility();
         }

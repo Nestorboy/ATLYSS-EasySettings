@@ -21,17 +21,17 @@ internal static class TabSelectorPrefab
 
         return obj.transform as RectTransform;
     }
-    
+
     private static GameObject CreateRoot(out Button leftButton, out Button rightButton, out Text label)
     {
         GameObject obj = new("EasySettings TabSelector");
 
         RectTransform rectTransform = obj.AddComponent<RectTransform>();
         rectTransform.pivot = new Vector2(0.5f, 0.5f);
-        rectTransform.anchorMin = new Vector2(0, 1);
-        rectTransform.anchorMax = new Vector2(0, 1);
-        rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 545);
-        rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 30);
+        rectTransform.anchorMin = new Vector2(0f, 1f);
+        rectTransform.anchorMax = new Vector2(0f, 1f);
+        rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 545f);
+        rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 30f);
 
         CanvasRenderer canvasRenderer = obj.AddComponent<CanvasRenderer>();
         canvasRenderer.cullTransparentMesh = true;
@@ -44,9 +44,9 @@ internal static class TabSelectorPrefab
         image.type = Image.Type.Sliced;
         image.fillCenter = true;
         image.fillMethod = Image.FillMethod.Radial360;
-        image.fillAmount = 1;
+        image.fillAmount = 1f;
         image.fillClockwise = true;
-        image.pixelsPerUnitMultiplier = 1;
+        image.pixelsPerUnitMultiplier = 1f;
 
         CreateButton(obj, out leftButton, true);
         CreateLabel(obj, out label);
@@ -64,13 +64,13 @@ internal static class TabSelectorPrefab
         rectTransform.pivot = new Vector2(0.5f, 0.5f);
         rectTransform.anchorMin = new Vector2(0.5f, 0.5f);
         rectTransform.anchorMax = new Vector2(0.5f, 0.5f);
-        rectTransform.SetInsetAndSizeFromParentEdge(isLeftOriented ? RectTransform.Edge.Left : RectTransform.Edge.Right, 6, 30);
-        rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 30);
-        rectTransform.localRotation = Quaternion.Euler(0, 0, isLeftOriented ? -90 : 90); // Sprite normally points downward
+        rectTransform.SetInsetAndSizeFromParentEdge(isLeftOriented ? RectTransform.Edge.Left : RectTransform.Edge.Right, 6f, 30f);
+        rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 30f);
+        rectTransform.localRotation = Quaternion.Euler(0f, 0f, isLeftOriented ? -90f : 90f); // Sprite normally points downward
 
         CanvasRenderer canvasRenderer = obj.AddComponent<CanvasRenderer>();
         canvasRenderer.cullTransparentMesh = true;
-        
+
         Image image = obj.AddComponent<Image>();
         image.color = Color.white;
         image.raycastTarget = true;
@@ -79,9 +79,9 @@ internal static class TabSelectorPrefab
         image.type = Image.Type.Filled;
         image.fillCenter = true;
         image.fillMethod = Image.FillMethod.Radial360;
-        image.fillAmount = 1;
+        image.fillAmount = 1f;
         image.fillClockwise = true;
-        image.pixelsPerUnitMultiplier = 1;
+        image.pixelsPerUnitMultiplier = 1f;
 
         button = obj.AddComponent<Button>();
         button.transition = Selectable.Transition.ColorTint;
@@ -104,7 +104,7 @@ internal static class TabSelectorPrefab
 
         return obj;
     }
-    
+
     private static GameObject CreateLabel(GameObject root, out Text label)
     {
         GameObject obj = new("Label");
@@ -114,8 +114,8 @@ internal static class TabSelectorPrefab
         rectTransform.pivot = new Vector2(0.5f, 0.5f);
         rectTransform.anchorMin = new Vector2(0.5f, 0.5f);
         rectTransform.anchorMax = new Vector2(0.5f, 0.5f);
-        rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 420);
-        rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 30);
+        rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 420f);
+        rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 30f);
 
         CanvasRenderer canvasRenderer = obj.AddComponent<CanvasRenderer>();
         canvasRenderer.cullTransparentMesh = true;

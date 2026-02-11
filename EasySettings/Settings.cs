@@ -34,7 +34,7 @@ public static class Settings
     public static UnityEvent OnCloseSettings { get; } = new();
 
     internal static int ModTabIndex { get; set; }
-    internal static int SettingsTabIndex { get; set; } = 0;
+    internal static int SettingsTabIndex { get; set; }
     internal static List<SettingsTab> SettingsTabs { get; } = [ModTab];
 
     /// <summary>
@@ -44,31 +44,38 @@ public static class Settings
     /// <returns>A new tab you can use for organizing settings</returns>
     public static SettingsTab AddCustomTab(string label)
     {
-        SettingsTab tab = new SettingsTab
+        SettingsTab tab = new()
         {
-            TabName = label
+            TabName = label,
         };
-        
+
         SettingsTabs.Add(tab);
         SettingsTabs.Sort((first, second) =>
         {
             if (first == ModTab)
+            {
                 return -1;
-            
+            }
+
             if (second == ModTab)
+            {
                 return 1;
+            }
 
             return string.Compare(first.TabName, second.TabName, StringComparison.Ordinal);
         });
+
         SettingsTabIndex = 0;
         TemplateManager.InitializeTabContent(tab);
 
         for (int i = 0; i < SettingsTabs.Count; i++)
+        {
             SettingsTabs[i].TabControlLabel.text = $"{SettingsTabs[i].TabName} ({i + 1} / {SettingsTabs.Count})";
+        }
 
         return tab;
     }
-    
+
     internal static AtlyssTabButton AddTabButton(string label)
     {
         SettingsManager manager = SettingsManager._current;
@@ -83,17 +90,21 @@ public static class Settings
 
     internal static void UpdateTabVisibility()
     {
-        bool currentlyOnModTab = (int)SettingsManager._current._currentSettingsMenuSelection == Settings.ModTabIndex;
-        
+        bool currentlyOnModTab = (int)SettingsManager._current._currentSettingsMenuSelection == ModTabIndex;
+
         for (int i = 0; i < SettingsTabs.Count; i++)
         {
-            var tab = SettingsTabs[i];
-            
+            SettingsTab tab = SettingsTabs[i];
+
             if (tab.Element)
-                tab.Element.isEnabled = currentlyOnModTab && i == Settings.SettingsTabIndex;
-            
+            {
+                tab.Element.isEnabled = currentlyOnModTab && i == SettingsTabIndex;
+            }
+
             if (tab.Content)
+            {
                 tab.Content.anchoredPosition = Vector2.zero;
+            }
         }
     }
 }

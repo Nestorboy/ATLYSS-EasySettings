@@ -46,7 +46,7 @@ internal static class TemplateManager
         TextFieldTemplate = TextFieldPrefab.Create();
         Object.DontDestroyOnLoad(TextFieldTemplate);
         TextFieldTemplate.gameObject.SetActive(false);
-        
+
         TabSelectorTemplate = TabSelectorPrefab.Create();
         Object.DontDestroyOnLoad(TabSelectorTemplate);
         TabSelectorTemplate.gameObject.SetActive(false);
@@ -77,29 +77,35 @@ internal static class TemplateManager
 
         RectTransform tabSelector = Object.Instantiate(TabSelectorTemplate, settingsTab.Content);
         tabSelector.gameObject.SetActive(true);
-        var components = tabSelector.GetComponent<ComponentReferences>();
-        var leftButton = (Button)components.components[0];
-        var rightButton = (Button)components.components[1];
-        var label = (Text)components.components[2];
+        ComponentReferences components = tabSelector.GetComponent<ComponentReferences>();
+        Button leftButton = (Button)components.components[0];
+        Button rightButton = (Button)components.components[1];
+        Text label = (Text)components.components[2];
 
         settingsTab.TabControlLabel = label;
-        
+
         leftButton.onClick.AddListener(() =>
         {
             Settings.SettingsTabIndex--;
             if (Settings.SettingsTabIndex < 0)
+            {
                 Settings.SettingsTabIndex = Settings.SettingsTabs.Count - 1;
+            }
             Settings.UpdateTabVisibility();
             SettingsManager._current._gamepadSelectAsrc.Play();
         });
+
         rightButton.onClick.AddListener(() =>
         {
             Settings.SettingsTabIndex++;
             if (Settings.SettingsTabIndex >= Settings.SettingsTabs.Count)
+            {
                 Settings.SettingsTabIndex = 0;
+            }
             Settings.UpdateTabVisibility();
             SettingsManager._current._gamepadSelectAsrc.Play();
         });
+
         label.text = settingsTab.TabName;
     }
 
@@ -124,6 +130,7 @@ internal static class TemplateManager
             foreach (RectTransform child in tab)
             {
                 if (child.childCount != 0) continue;
+
                 Component[] components = child.GetComponents<Component>();
                 if (components.Length > 1) continue;
 
@@ -265,8 +272,10 @@ internal static class TemplateManager
     internal static RectTransform CreateHiddenClone(RectTransform transform)
     {
         if (transform == null)
+        {
             return null;
-        
+        }
+
         RectTransform root = Object.Instantiate(transform, null);
         root.gameObject.SetActive(false);
         Object.DontDestroyOnLoad(root);
@@ -494,6 +503,6 @@ internal static class TemplateManager
 
         return textField;
     }
-    
+
     #endregion
 }
