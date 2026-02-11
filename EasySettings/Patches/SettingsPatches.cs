@@ -74,6 +74,7 @@ public static class SettingsPatches
             }
 
             TemplateManager.Initialize();
+            TemplateManager.InitializeTabContent(Settings.ModTab);
 
             OnSettingsMenuInitialized.Invoke();
         }
@@ -110,17 +111,9 @@ public static class SettingsPatches
         // ReSharper disable once UnusedMember.Local
         // ReSharper disable InconsistentNaming
         [HarmonyPostfix]
-        private static void ApplySelection(SettingsManager __instance) // ReSharper restore InconsistentNaming
+        private static void ApplySelection() // ReSharper restore InconsistentNaming
         {
-            if (ModTab.Element)
-            {
-                ModTab.Element.isEnabled = (int)__instance._currentSettingsMenuSelection == Settings.ModTabIndex;
-            }
-
-            if (ModTab.Content)
-            {
-                ModTab.Content.anchoredPosition = Vector2.zero;
-            }
+            Settings.UpdateTabVisibility();
         }
     }
 
