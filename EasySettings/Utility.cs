@@ -24,6 +24,7 @@ public static class Utility
             {
                 return true;
             }
+
             root = root.parent;
         }
 

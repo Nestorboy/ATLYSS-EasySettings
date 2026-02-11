@@ -91,6 +91,7 @@ internal static class TemplateManager
             {
                 Settings.SettingsTabIndex = Settings.SettingsTabs.Count - 1;
             }
+
             Settings.UpdateTabVisibility();
             SettingsManager._current._gamepadSelectAsrc.Play();
         });
@@ -102,6 +103,7 @@ internal static class TemplateManager
             {
                 Settings.SettingsTabIndex = 0;
             }
+
             Settings.UpdateTabVisibility();
             SettingsManager._current._gamepadSelectAsrc.Play();
         });
