@@ -6,10 +6,6 @@ namespace Nessie.ATLYSS.EasySettings.Prefabs;
 
 internal static class TextFieldPrefab
 {
-    private const string FONT_PATH = "_graphic/_font/terminal-grotesque";
-    private const string BACKGROUND_SPRITE_PATH = "_graphic/_ui/bk_04";
-    private const string INPUT_SPRITE_PATH = "_graphic/_ui/uiBox03";
-
     internal static RectTransform Create()
     {
         GameObject obj = CreateRoot(out InputField inputField, out Text label);
@@ -39,7 +35,7 @@ internal static class TextFieldPrefab
         image.color = new Color(0.4622f, 0.4622f, 0.4622f);
         image.raycastTarget = true;
         image.maskable = true;
-        image.sprite = Resources.Load<Sprite>(BACKGROUND_SPRITE_PATH);
+        image.sprite = Resources.Load<Sprite>(AssetPaths.BACKGROUND_SPRITE);
         image.type = Image.Type.Sliced;
         image.fillCenter = true;
         image.fillMethod = Image.FillMethod.Radial360;
@@ -75,7 +71,7 @@ internal static class TextFieldPrefab
         image.color = new Color(0.5943f, 0.5943f, 0.5943f, 0.8078f);
         image.raycastTarget = true;
         image.maskable = true;
-        image.sprite = Resources.Load<Sprite>(INPUT_SPRITE_PATH);
+        image.sprite = Resources.Load<Sprite>(AssetPaths.INPUT_SPRITE);
         image.type = Image.Type.Sliced;
         image.fillCenter = true;
         image.fillMethod = Image.FillMethod.Radial360;
@@ -140,7 +136,7 @@ internal static class TextFieldPrefab
         Text text = label = obj.AddComponent<Text>();
         text.color = new Color(1f, 0.5141f, 0.5141f);
         text.maskable = true;
-        text.font = Resources.Load<Font>(FONT_PATH);
+        text.font = Resources.Load<Font>(AssetPaths.UI_FONT);
         text.fontSize = 22;
         text.fontStyle = FontStyle.Normal;
         text.resizeTextMinSize = 10;
@@ -173,7 +169,7 @@ internal static class TextFieldPrefab
         Text text = obj.AddComponent<Text>();
         text.color = new Color(1f, 0.5137f, 0.5137f);
         text.maskable = true;
-        text.font = Resources.Load<Font>(FONT_PATH);
+        text.font = Resources.Load<Font>(AssetPaths.UI_FONT);
         text.fontSize = 22;
         text.fontStyle = FontStyle.Normal;
         text.resizeTextMinSize = 2;
@@ -206,7 +202,7 @@ internal static class TextFieldPrefab
         Text text = obj.AddComponent<Text>();
         text.color = new Color(0.8207f, 0.3677f, 0.3677f);
         text.maskable = true;
-        text.font = Resources.Load<Font>(FONT_PATH);
+        text.font = Resources.Load<Font>(AssetPaths.UI_FONT);
         text.fontSize = 21;
         text.fontStyle = FontStyle.Italic;
         text.resizeTextMinSize = 10;

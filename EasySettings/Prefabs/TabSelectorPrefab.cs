@@ -6,10 +6,6 @@ namespace Nessie.ATLYSS.EasySettings.Prefabs;
 
 internal static class TabSelectorPrefab
 {
-    private const string FONT_PATH = "_graphic/_font/terminal-grotesque";
-    private const string BACKGROUND_SPRITE_PATH = "_graphic/_ui/bk_04";
-    private const string INDICATOR_SPRITE_PATH = "_graphic/_ui/uiSprite_playerIndicator";
-
     internal static RectTransform Create()
     {
         GameObject obj = CreateRoot(out Button leftButton, out Button rightButton, out Text label);
@@ -40,7 +36,7 @@ internal static class TabSelectorPrefab
         image.color = new Color(0.75f, 0.75f, 1f);
         image.raycastTarget = true;
         image.maskable = true;
-        image.sprite = Resources.Load<Sprite>(BACKGROUND_SPRITE_PATH);
+        image.sprite = Resources.Load<Sprite>(AssetPaths.BACKGROUND_SPRITE);
         image.type = Image.Type.Sliced;
         image.fillCenter = true;
         image.fillMethod = Image.FillMethod.Radial360;
@@ -75,7 +71,7 @@ internal static class TabSelectorPrefab
         image.color = Color.white;
         image.raycastTarget = true;
         image.maskable = true;
-        image.sprite = Resources.Load<Sprite>(INDICATOR_SPRITE_PATH);
+        image.sprite = Resources.Load<Sprite>(AssetPaths.INDICATOR_SPRITE);
         image.type = Image.Type.Filled;
         image.fillCenter = true;
         image.fillMethod = Image.FillMethod.Radial360;
@@ -123,7 +119,7 @@ internal static class TabSelectorPrefab
         Text text = label = obj.AddComponent<Text>();
         text.color = Color.white;
         text.maskable = true;
-        text.font = Resources.Load<Font>(FONT_PATH);
+        text.font = Resources.Load<Font>(AssetPaths.UI_FONT);
         text.fontSize = 22;
         text.fontStyle = FontStyle.Normal;
         text.resizeTextMinSize = 10;
