@@ -292,7 +292,7 @@ internal static class TemplateManager
     {
         RectTransform root = Object.Instantiate(template, container);
 
-        AtlyssTabButton atlyssTabButton = new AtlyssTabButton
+        AtlyssTabButton atlyssTabButton = new()
         {
             Root = root,
             Label = root.GetComponentInChildren<Text>(true),
@@ -310,7 +310,7 @@ internal static class TemplateManager
     {
         RectTransform root = Object.Instantiate(template, container);
 
-        AtlyssHeader header = new AtlyssHeader
+        AtlyssHeader header = new()
         {
             Root = root,
             Label = root.GetComponentInChildren<Text>(true),
@@ -327,7 +327,7 @@ internal static class TemplateManager
     {
         RectTransform root = Object.Instantiate(template, container);
 
-        AtlyssButton button = new AtlyssButton
+        AtlyssButton button = new()
         {
             Root = root,
             ButtonLabel = root.GetComponentInChildren<Text>(true),
@@ -345,7 +345,7 @@ internal static class TemplateManager
     {
         RectTransform root = Object.Instantiate(template, container);
 
-        AtlyssToggle toggle = new AtlyssToggle
+        AtlyssToggle toggle = new()
         {
             Root = root,
             Label = root.GetComponentInChildren<Text>(true),
@@ -365,7 +365,7 @@ internal static class TemplateManager
 
         List<Component> components = root.GetComponentInChildren<ComponentReferences>(true).components;
 
-        AtlyssSimpleSlider advSlider = new AtlyssSimpleSlider
+        AtlyssSimpleSlider advSlider = new()
         {
             Root = root,
             Label = root.GetComponentInChildren<Text>(true),
@@ -385,7 +385,7 @@ internal static class TemplateManager
 
         List<Component> components = root.GetComponentInChildren<ComponentReferences>(true).components;
 
-        AtlyssAdvancedSlider advSlider = new AtlyssAdvancedSlider
+        AtlyssAdvancedSlider advSlider = new()
         {
             Root = root,
             Label = root.GetComponentInChildren<Text>(true),
@@ -407,7 +407,7 @@ internal static class TemplateManager
 
         List<Component> components = root.GetComponentInChildren<ComponentReferences>(true).components;
 
-        AtlyssDropdown dropdown = new AtlyssDropdown
+        AtlyssDropdown dropdown = new()
         {
             Root = root,
             Label = root.GetComponentInChildren<Text>(true),
@@ -427,7 +427,7 @@ internal static class TemplateManager
 
         List<Component> components = root.GetComponentInChildren<ComponentReferences>(true).components;
 
-        AtlyssKeyButton keyButton = new AtlyssKeyButton
+        AtlyssKeyButton keyButton = new()
         {
             Root = root,
             Label = root.GetComponentInChildren<Text>(true),
@@ -446,7 +446,7 @@ internal static class TemplateManager
     {
         RectTransform root = Object.Instantiate(template, container);
 
-        AtlyssSpace space = new AtlyssSpace { Root = root };
+        AtlyssSpace space = new() { Root = root };
 
         return space;
     }
@@ -461,7 +461,7 @@ internal static class TemplateManager
         InputField inputField = (InputField)components[0];
         Text label = (Text)components[1];
 
-        AtlyssTextField textField = new AtlyssTextField
+        AtlyssTextField textField = new()
         {
             Root = root,
             Label = label,
