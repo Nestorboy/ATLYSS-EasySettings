@@ -1,5 +1,4 @@
-﻿using System;
-using Nessie.ATLYSS.EasySettings.Extensions;
+﻿using Nessie.ATLYSS.EasySettings.Extensions;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
