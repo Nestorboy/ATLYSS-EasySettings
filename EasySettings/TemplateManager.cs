@@ -286,9 +286,7 @@ internal static class TemplateManager
 
     #region Create
 
-    internal static AtlyssTabButton CreateTabButton(RectTransform container) => CreateTabButton(container, TabTemplate);
-
-    internal static AtlyssTabButton CreateTabButton(RectTransform container, AtlyssTabButton template) => CreateTabButton(container, template.Root);
+    internal static AtlyssTabButton CreateTabButton(RectTransform container) => CreateTabButton(container, TabTemplate.Root);
 
     internal static AtlyssTabButton CreateTabButton(RectTransform container, RectTransform template)
     {
@@ -308,8 +306,6 @@ internal static class TemplateManager
 
     internal static AtlyssHeader CreateHeader(RectTransform container) => CreateHeader(container, HeaderTemplate);
 
-    internal static AtlyssHeader CreateHeader(RectTransform container, AtlyssHeader template) => CreateHeader(container, template.Root);
-
     internal static AtlyssHeader CreateHeader(RectTransform container, RectTransform template)
     {
         RectTransform root = Object.Instantiate(template, container);
@@ -326,8 +322,6 @@ internal static class TemplateManager
     }
 
     internal static AtlyssButton CreateButton(RectTransform container) => CreateButton(container, ButtonTemplate);
-
-    internal static AtlyssButton CreateButton(RectTransform container, AtlyssButton template) => CreateButton(container, template.Root);
 
     internal static AtlyssButton CreateButton(RectTransform container, RectTransform template)
     {
@@ -347,8 +341,6 @@ internal static class TemplateManager
 
     internal static AtlyssToggle CreateToggle(RectTransform container) => CreateToggle(container, ToggleTemplate);
 
-    internal static AtlyssToggle CreateToggle(RectTransform container, AtlyssToggle template) => CreateToggle(container, template.Root);
-
     internal static AtlyssToggle CreateToggle(RectTransform container, RectTransform template)
     {
         RectTransform root = Object.Instantiate(template, container);
@@ -366,8 +358,6 @@ internal static class TemplateManager
     }
 
     internal static AtlyssSimpleSlider CreateSimpleSlider(RectTransform container) => CreateSimpleSlider(container, SimpleSliderTemplate);
-
-    internal static AtlyssSimpleSlider CreateSimpleSlider(RectTransform container, AtlyssSimpleSlider template) => CreateSimpleSlider(container, template.Root);
 
     internal static AtlyssSimpleSlider CreateSimpleSlider(RectTransform container, RectTransform template)
     {
@@ -388,8 +378,6 @@ internal static class TemplateManager
     }
 
     internal static AtlyssAdvancedSlider CreateAdvancedSlider(RectTransform container) => CreateAdvancedSlider(container, AdvancedSliderTemplate);
-
-    internal static AtlyssAdvancedSlider CreateAdvancedSlider(RectTransform container, AtlyssAdvancedSlider template) => CreateAdvancedSlider(container, template.Root);
 
     internal static AtlyssAdvancedSlider CreateAdvancedSlider(RectTransform container, RectTransform template)
     {
@@ -413,8 +401,6 @@ internal static class TemplateManager
 
     internal static AtlyssDropdown CreateDropdown(RectTransform container) => CreateDropdown(container, DropdownTemplate);
 
-    internal static AtlyssDropdown CreateDropdown(RectTransform container, AtlyssDropdown template) => CreateDropdown(container, template.Root);
-
     internal static AtlyssDropdown CreateDropdown(RectTransform container, RectTransform template)
     {
         RectTransform root = Object.Instantiate(template, container);
@@ -434,8 +420,6 @@ internal static class TemplateManager
     }
 
     internal static AtlyssKeyButton CreateKeyButton(RectTransform container) => CreateKeyButton(container, KeyButtonTemplate);
-
-    internal static AtlyssKeyButton CreateKeyButton(RectTransform container, AtlyssKeyButton template) => CreateKeyButton(container, template.Root);
 
     internal static AtlyssKeyButton CreateKeyButton(RectTransform container, RectTransform template)
     {
@@ -458,8 +442,6 @@ internal static class TemplateManager
 
     internal static AtlyssSpace CreateSpace(RectTransform container) => CreateSpace(container, SpaceTemplate);
 
-    internal static AtlyssSpace CreateSpace(RectTransform container, AtlyssSpace template) => CreateSpace(container, template.Root);
-
     internal static AtlyssSpace CreateSpace(RectTransform container, RectTransform template)
     {
         RectTransform root = Object.Instantiate(template, container);
@@ -470,8 +452,6 @@ internal static class TemplateManager
     }
 
     internal static AtlyssTextField CreateTextField(RectTransform container) => CreateTextField(container, TextFieldTemplate);
-
-    internal static AtlyssTextField CreateTextField(RectTransform container, AtlyssTextField template) => CreateTextField(container, template.Root);
 
     internal static AtlyssTextField CreateTextField(RectTransform container, RectTransform template)
     {
