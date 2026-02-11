@@ -44,14 +44,14 @@ internal static class TabSelectorPrefab
         image.fillClockwise = true;
         image.pixelsPerUnitMultiplier = 1f;
 
-        CreateButton(obj, out leftButton, true);
-        CreateLabel(obj, out label);
-        CreateButton(obj, out rightButton, false);
+        leftButton = CreateButton(obj, true);
+        label = CreateLabel(obj);
+        rightButton = CreateButton(obj, false);
 
         return obj;
     }
 
-    private static GameObject CreateButton(GameObject root, out Button button, bool isLeftOriented)
+    private static Button CreateButton(GameObject root, bool isLeftOriented)
     {
         GameObject obj = new("Button");
         obj.transform.SetParent(root.transform);
@@ -79,7 +79,7 @@ internal static class TabSelectorPrefab
         image.fillClockwise = true;
         image.pixelsPerUnitMultiplier = 1f;
 
-        button = obj.AddComponent<Button>();
+        Button button = obj.AddComponent<Button>();
         button.transition = Selectable.Transition.ColorTint;
         button.colors = new ColorBlock
         {
@@ -98,10 +98,10 @@ internal static class TabSelectorPrefab
         button.animationTriggers.disabledTrigger = "Disabled";
         button.targetGraphic = image;
 
-        return obj;
+        return button;
     }
 
-    private static GameObject CreateLabel(GameObject root, out Text label)
+    private static Text CreateLabel(GameObject root)
     {
         GameObject obj = new("Label");
         obj.transform.SetParent(root.transform);
@@ -116,7 +116,7 @@ internal static class TabSelectorPrefab
         CanvasRenderer canvasRenderer = obj.AddComponent<CanvasRenderer>();
         canvasRenderer.cullTransparentMesh = true;
 
-        Text text = label = obj.AddComponent<Text>();
+        Text text = obj.AddComponent<Text>();
         text.color = Color.white;
         text.maskable = true;
         text.font = Resources.Load<Font>(AssetPaths.UI_FONT);
@@ -131,6 +131,6 @@ internal static class TabSelectorPrefab
         text.lineSpacing = 1;
         text.text = "Label";
 
-        return obj;
+        return text;
     }
 }

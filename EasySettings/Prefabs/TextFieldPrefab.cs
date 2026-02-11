@@ -43,13 +43,13 @@ internal static class TextFieldPrefab
         image.fillClockwise = true;
         image.pixelsPerUnitMultiplier = 1;
 
-        CreateInputField(obj, out inputField);
-        CreateLabel(obj, out label);
+        inputField = CreateInputField(obj);
+        label = CreateLabel(obj);
 
         return obj;
     }
 
-    private static GameObject CreateInputField(GameObject root, out InputField inputField)
+    private static InputField CreateInputField(GameObject root)
     {
         GameObject obj = new("InputField");
         obj.transform.SetParent(root.transform);
@@ -79,7 +79,7 @@ internal static class TextFieldPrefab
         image.fillClockwise = true;
         image.pixelsPerUnitMultiplier = 1;
 
-        inputField = obj.AddComponent<InputField>();
+        InputField inputField = obj.AddComponent<InputField>();
         inputField.transition = Selectable.Transition.ColorTint;
         inputField.colors = new ColorBlock
         {
@@ -115,10 +115,10 @@ internal static class TextFieldPrefab
         inputField.readOnly = false;
         inputField.shouldActivateOnSelect = true;
 
-        return obj;
+        return inputField;
     }
 
-    private static GameObject CreateLabel(GameObject root, out Text label)
+    private static Text CreateLabel(GameObject root)
     {
         GameObject obj = new("Label");
         obj.transform.SetParent(root.transform);
@@ -133,7 +133,7 @@ internal static class TextFieldPrefab
         CanvasRenderer canvasRenderer = obj.AddComponent<CanvasRenderer>();
         canvasRenderer.cullTransparentMesh = true;
 
-        Text text = label = obj.AddComponent<Text>();
+        Text text = obj.AddComponent<Text>();
         text.color = new Color(1f, 0.5141f, 0.5141f);
         text.maskable = true;
         text.font = Resources.Load<Font>(AssetPaths.UI_FONT);
@@ -148,7 +148,7 @@ internal static class TextFieldPrefab
         text.lineSpacing = 1;
         text.text = "Label";
 
-        return obj;
+        return text;
     }
 
     private static GameObject CreateText(GameObject root)
