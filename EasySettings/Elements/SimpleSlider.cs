@@ -6,16 +6,14 @@ namespace Nessie.ATLYSS.EasySettings.UIElements;
 
 public class AtlyssSimpleSlider : BaseAtlyssLabelElement, IValueElement
 {
-    private Slider _slider;
-
     public Slider Slider
     {
-        get => _slider;
+        get;
         set
         {
-            if (_slider) _slider.onValueChanged.RemoveListener(ValueChanged);
-            _slider = value;
-            if (_slider) _slider.onValueChanged.AddListener(ValueChanged);
+            if (field) field.onValueChanged.RemoveListener(ValueChanged);
+            field = value;
+            if (field) field.onValueChanged.AddListener(ValueChanged);
         }
     }
 
@@ -35,9 +33,9 @@ public class AtlyssSimpleSlider : BaseAtlyssLabelElement, IValueElement
         Slider.SetValueWithoutNotify(AppliedValue);
     }
 
-    public void Apply() => AppliedValue = _slider.value;
+    public void Apply() => AppliedValue = Slider.value;
 
-    public void Revert() => _slider.value = AppliedValue;
+    public void Revert() => Slider.value = AppliedValue;
 
     private void ValueChanged(float newValue) => OnValueChanged.Invoke(newValue);
 }

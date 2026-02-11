@@ -6,16 +6,14 @@ namespace Nessie.ATLYSS.EasySettings.UIElements;
 
 public class AtlyssDropdown : BaseAtlyssLabelElement, IValueElement
 {
-    private Dropdown _dropdown;
-
     public Dropdown Dropdown
     {
-        get => _dropdown;
+        get;
         set
         {
-            if (_dropdown) _dropdown.onValueChanged.RemoveListener(ValueChanged);
-            _dropdown = value;
-            if (_dropdown) _dropdown.onValueChanged.AddListener(ValueChanged);
+            if (field) field.onValueChanged.RemoveListener(ValueChanged);
+            field = value;
+            if (field) field.onValueChanged.AddListener(ValueChanged);
         }
     }
 

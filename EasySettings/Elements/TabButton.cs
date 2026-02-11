@@ -7,16 +7,14 @@ public class AtlyssTabButton : BaseAtlyssElement
 {
     public Text Label;
 
-    private Button _resetButton;
-
     public Button Button
     {
-        get => _resetButton;
+        get;
         set
         {
-            if (_resetButton) _resetButton.onClick.RemoveListener(Clicked);
-            _resetButton = value;
-            if (_resetButton) _resetButton.onClick.AddListener(Clicked);
+            if (field) field.onClick.RemoveListener(Clicked);
+            field = value;
+            if (field) field.onClick.AddListener(Clicked);
         }
     }
 

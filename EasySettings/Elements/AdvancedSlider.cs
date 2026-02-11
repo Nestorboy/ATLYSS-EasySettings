@@ -9,7 +9,6 @@ public class AtlyssAdvancedSlider : BaseAtlyssLabelElement, IValueElement
     public Text ValueText;
 
     private Slider _slider;
-    private Button _resetButton;
 
     public Slider Slider
     {
@@ -24,12 +23,12 @@ public class AtlyssAdvancedSlider : BaseAtlyssLabelElement, IValueElement
 
     public Button ResetButton
     {
-        get => _resetButton;
+        get;
         set
         {
-            if (_resetButton) _resetButton.onClick.RemoveListener(ResetClicked);
-            _resetButton = value;
-            if (_resetButton) _resetButton.onClick.AddListener(ResetClicked);
+            if (field) field.onClick.RemoveListener(ResetClicked);
+            field = value;
+            if (field) field.onClick.AddListener(ResetClicked);
         }
     }
 

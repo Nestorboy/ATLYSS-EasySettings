@@ -5,20 +5,19 @@ namespace Nessie.ATLYSS.EasySettings.UIElements
 {
     public class AtlyssTextField : BaseAtlyssLabelElement, IValueElement
     {
-        private InputField _inputField;
         public InputField InputField
         {
-            get => _inputField;
+            get;
             set
             {
-                if (_inputField != null) _inputField.onEndEdit.RemoveListener(ValueChanged);
+                if (field != null) field.onEndEdit.RemoveListener(ValueChanged);
 
-                _inputField = value;
+                field = value;
 
-                if (_inputField != null)
+                if (field != null)
                 {
-                    _inputField.onEndEdit.AddListener(ValueChanged);
-                    _inputField.text = AppliedValue;
+                    field.onEndEdit.AddListener(ValueChanged);
+                    field.text = AppliedValue;
                 }
             }
         }

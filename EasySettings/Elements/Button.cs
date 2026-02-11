@@ -8,16 +8,14 @@ public class AtlyssButton : BaseAtlyssElement
 {
     public Text ButtonLabel;
 
-    private Button _button;
-
     public Button Button
     {
-        get => _button;
+        get;
         set
         {
-            if (_button) _button.onClick.RemoveListener(Clicked);
-            _button = value;
-            if (_button) _button.onClick.RemoveListener(Clicked);
+            if (field) field.onClick.RemoveListener(Clicked);
+            field = value;
+            if (field) field.onClick.RemoveListener(Clicked);
         }
     }
 
