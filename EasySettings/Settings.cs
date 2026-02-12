@@ -74,11 +74,6 @@ public static class Settings
         SettingsTabIndex = 0;
         TemplateManager.InitializeTabContent(tab);
 
-        for (int i = 0; i < SettingsTabs.Count; i++)
-        {
-            SettingsTabs[i].TabControlLabel.text = $"{SettingsTabs[i].TabName} ({i + 1} / {SettingsTabs.Count})";
-        }
-
         return tab;
     }
 
@@ -97,6 +92,11 @@ public static class Settings
     internal static void UpdateTabVisibility()
     {
         bool currentlyOnModTab = (int)SettingsManager._current._currentSettingsMenuSelection == ModTabIndex;
+        bool includeDefaultTab = ShouldIncludeDefaultTab();
+        if (SettingsTabIndex == 0 && !includeDefaultTab)
+        {
+            SettingsTabIndex++;
+        }
 
         for (int i = 0; i < SettingsTabs.Count; i++)
         {
@@ -112,6 +112,33 @@ public static class Settings
                 tab.Content.anchoredPosition = Vector2.zero;
             }
         }
+
+        if (currentlyOnModTab)
+        {
+            SettingsTab tab = SettingsTabs[SettingsTabIndex];
+            if (tab.TabControlLabel)
+            {
+                tab.TabControlLabel.text = FormatTabName(tab);
+            }
+        }
+    }
+
+    internal static string FormatTabName(SettingsTab tab)
+    {
+        bool includeDefaultTab = ShouldIncludeDefaultTab();
+        int tabCount = includeDefaultTab ? SettingsTabs.Count : SettingsTabs.Count - 1;
+        if (tabCount < 2)
+        {
+            return tab.TabName;
+        }
+
+        int tabIndex = !includeDefaultTab && SettingsTabIndex >= 0 ? SettingsTabIndex - 1 : SettingsTabIndex;
+        return $"{tab.TabName} ({tabIndex + 1} / {tabCount})";
+    }
+
+    internal static bool ShouldIncludeDefaultTab()
+    {
+        return SettingsTabs.Count < 2 || ModTab.ContentElements.Count > 1;
     }
 
     internal static void SelectNextTab()
@@ -119,7 +146,7 @@ public static class Settings
         SettingsTabIndex++;
         if (SettingsTabIndex >= SettingsTabs.Count)
         {
-            SettingsTabIndex = 0;
+            SettingsTabIndex = ShouldIncludeDefaultTab() ? 0 : 1;
         }
 
         UpdateTabVisibility();
@@ -129,7 +156,7 @@ public static class Settings
     internal static void SelectPreviousTab()
     {
         SettingsTabIndex--;
-        if (SettingsTabIndex < 0)
+        if (SettingsTabIndex < (ShouldIncludeDefaultTab() ? 0 : 1))
         {
             SettingsTabIndex = SettingsTabs.Count - 1;
         }
