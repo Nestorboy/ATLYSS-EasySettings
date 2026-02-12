@@ -113,4 +113,28 @@ public static class Settings
             }
         }
     }
+
+    internal static void SelectNextTab()
+    {
+        SettingsTabIndex++;
+        if (SettingsTabIndex >= SettingsTabs.Count)
+        {
+            SettingsTabIndex = 0;
+        }
+
+        UpdateTabVisibility();
+        SettingsManager._current._gamepadSelectAsrc.Play();
+    }
+
+    internal static void SelectPreviousTab()
+    {
+        SettingsTabIndex--;
+        if (SettingsTabIndex < 0)
+        {
+            SettingsTabIndex = SettingsTabs.Count - 1;
+        }
+
+        UpdateTabVisibility();
+        SettingsManager._current._gamepadSelectAsrc.Play();
+    }
 }

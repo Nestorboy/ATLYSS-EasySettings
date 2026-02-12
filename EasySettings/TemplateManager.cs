@@ -84,29 +84,9 @@ internal static class TemplateManager
 
         settingsTab.TabControlLabel = label;
 
-        leftButton.onClick.AddListener(() =>
-        {
-            Settings.SettingsTabIndex--;
-            if (Settings.SettingsTabIndex < 0)
-            {
-                Settings.SettingsTabIndex = Settings.SettingsTabs.Count - 1;
-            }
+        leftButton.onClick.AddListener(Settings.SelectPreviousTab);
 
-            Settings.UpdateTabVisibility();
-            SettingsManager._current._gamepadSelectAsrc.Play();
-        });
-
-        rightButton.onClick.AddListener(() =>
-        {
-            Settings.SettingsTabIndex++;
-            if (Settings.SettingsTabIndex >= Settings.SettingsTabs.Count)
-            {
-                Settings.SettingsTabIndex = 0;
-            }
-
-            Settings.UpdateTabVisibility();
-            SettingsManager._current._gamepadSelectAsrc.Play();
-        });
+        rightButton.onClick.AddListener(Settings.SelectNextTab);
 
         label.text = settingsTab.TabName;
     }
