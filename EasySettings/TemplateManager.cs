@@ -68,12 +68,13 @@ internal static class TemplateManager
         Transform modTabElement = Object.Instantiate(manager._videoTabElement.transform, manager._videoTabElement.transform.parent);
         settingsTab.Element = modTabElement.GetComponent<MenuElement>();
         settingsTab.Content = (RectTransform)modTabElement.GetComponentInChildren<VerticalLayoutGroup>().transform;
-        settingsTab.BottomSpace = settingsTab.AddSpace();
 
         foreach (RectTransform child in settingsTab.Content)
         {
             Object.Destroy(child.gameObject);
         }
+
+        settingsTab.BottomSpace = settingsTab.AddSpace();
 
         RectTransform tabSelector = Object.Instantiate(_tabSelectorTemplate, settingsTab.Content);
         tabSelector.gameObject.SetActive(true);
